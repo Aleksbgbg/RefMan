@@ -3,8 +3,15 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
-			 mc:Ignorable="d"
+             xmlns:Caliburn="http://www.caliburnproject.org" 
+             xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
+             mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:FileSystemViewModel}">
-    <TreeView/>
+    <TreeView ItemsSource="{Binding RootFolder.Folders, Mode=OneTime}">
+        <TreeView.Resources>
+            <HierarchicalDataTemplate DataType="{x:Type ViewModels:FolderViewModel}" ItemsSource="{Binding Folders}">
+                <ContentControl Caliburn:View.Model="{Binding Mode=OneTime}"/>
+            </HierarchicalDataTemplate>
+        </TreeView.Resources>
+    </TreeView>
 </UserControl>

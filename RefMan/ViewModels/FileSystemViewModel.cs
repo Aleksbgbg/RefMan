@@ -9,6 +9,8 @@
         public FileSystemViewModel(IFileSystemFactory fileSystemFactory, IFileSystemService fileSystemService)
         {
             RootFolder = fileSystemFactory.MakeFolder(fileSystemService.ReadRootFolder());
+
+            RootFolder.IsExpanded = true;
         }
 
         public IFolderViewModel RootFolder { get; }
