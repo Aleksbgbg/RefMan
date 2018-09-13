@@ -15,6 +15,8 @@
 
         private readonly IFileSystemService _fileSystemService;
 
+        private bool _canExpand;
+
         public FolderViewModel(IFileSystemFactory fileSystemFactory, IFileSystemService fileSystemService)
         {
             _fileSystemFactory = fileSystemFactory;
@@ -32,10 +34,12 @@
 
             set
             {
-                if (_isExpanded == value) return;
+                if (!_canExpand || _isExpanded == value) return;
 
                 _isExpanded = value;
                 NotifyOfPropertyChange(() => IsExpanded);
+
+                Folders.Clear();
 
                 if (_isExpanded)
                 {
@@ -46,7 +50,7 @@
                 }
                 else
                 {
-                    Folders.Clear();
+                    AddDummyFolder();
                 }
             }
         }
@@ -54,6 +58,17 @@
         public void Initialize(Folder folder)
         {
             Folder = folder;
+
+            _canExpand = _fileSystemService.CanExpand(Folder);
+            AddDummyFolder();
+        }
+
+        private void AddDummyFolder()
+        {
+            if (_canExpand)
+            {
+                Folders.Add(null);
+            }
         }
     }
 }
