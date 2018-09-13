@@ -4,6 +4,8 @@
 
     internal interface IFolderViewModel : IViewModelBase
     {
+        bool IsExpanded { get; set; }
+
         void Initialize(Folder folder);
     }
 }
