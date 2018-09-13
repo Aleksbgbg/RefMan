@@ -2,7 +2,7 @@
 {
     internal class File : FileSystemEntry
     {
-        public File(string name) : base(name)
+        public File(string path, string name) : base(path, name)
         {
         }
     }
