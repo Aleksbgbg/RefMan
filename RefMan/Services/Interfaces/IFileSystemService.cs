@@ -4,6 +4,8 @@
 
     internal interface IFileSystemService
     {
+        Folder ReadRootFolder();
+
         FileSystemEntry[] ReadRootEntries();
 
         FileSystemEntry[] ReadEntries(Folder folder);

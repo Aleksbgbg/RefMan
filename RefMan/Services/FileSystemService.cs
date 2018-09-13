@@ -12,6 +12,11 @@
     {
         private const string Root = @"E:\Documents\References";
 
+        public Folder ReadRootFolder()
+        {
+            return new Folder(Root, Path.GetFileName(Root), ReadEntries(Root));
+        }
+
         public FileSystemEntry[] ReadRootEntries()
         {
             return ReadEntries(Root);
