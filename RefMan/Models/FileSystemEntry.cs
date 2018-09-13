@@ -1,6 +1,6 @@
 ﻿namespace RefMan.Models
 {
-    internal class FileSystemEntry
+    internal abstract class FileSystemEntry
     {
         public FileSystemEntry(string path, string name)
         {
