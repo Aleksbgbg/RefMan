@@ -19,7 +19,7 @@
 
         public Folder ReadRootFolder()
         {
-            return new Folder(Root, Path.GetFileName(Root), ReadEntries(Root));
+            return new Folder(Root, Path.GetFileName(Root));
         }
 
         public FileSystemEntry[] ReadRootEntries()
