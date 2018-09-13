@@ -32,6 +32,11 @@
             return ReadEntries(folder.Path);
         }
 
+        public bool CanExpand(Folder folder)
+        {
+            return Directory.EnumerateFileSystemEntries(folder.Path).Any();
+        }
+
         private static FileSystemEntry[] ReadEntries(string path)
         {
             return Directory.GetDirectories(path)
