@@ -6,6 +6,8 @@
 
     using Caliburn.Micro;
 
+    using RefMan.Factories;
+    using RefMan.Factories.Interfaces;
     using RefMan.Services;
     using RefMan.Services.Interfaces;
     using RefMan.ViewModels;
@@ -27,6 +29,9 @@
 
         protected override void Configure()
         {
+            // Register Factories
+            _container.Singleton<IFileSystemFactory, FileSystemFactory>();
+
             // Register Services
             _container.Singleton<IWindowManager, WindowManager>();
 
