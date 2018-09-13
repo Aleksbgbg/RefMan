@@ -80,6 +80,7 @@
     </Page>
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileSystemEntry.cs" />
+    <Compile Include="Models\Folder.cs" />
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
