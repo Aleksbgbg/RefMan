@@ -6,6 +6,8 @@
 
     using Caliburn.Micro;
 
+    using RefMan.Services;
+    using RefMan.Services.Interfaces;
     using RefMan.ViewModels;
     using RefMan.ViewModels.Interfaces;
 
@@ -27,6 +29,8 @@
         {
             // Register Services
             _container.Singleton<IWindowManager, WindowManager>();
+
+            _container.Singleton<IFileSystemService, FileSystemService>();
 
             // Register ViewModels
             _container.Singleton<IShellViewModel, ShellViewModel>();
