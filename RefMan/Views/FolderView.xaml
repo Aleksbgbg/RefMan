@@ -6,5 +6,21 @@
 			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:FolderViewModel}">
-    <TextBlock Text="{Binding Folder.Name, Mode=OneTime}"/>
+    <StackPanel Orientation="Horizontal">
+        <Image Height="20">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsExpanded}" Value="True">
+                            <Setter Property="Source" Value="{StaticResource FolderOpen}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding IsExpanded}" Value="False">
+                            <Setter Property="Source" Value="{StaticResource Folder}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
+        <TextBlock Text="{Binding Folder.Name, Mode=OneTime}"/>
+    </StackPanel>
 </UserControl>
