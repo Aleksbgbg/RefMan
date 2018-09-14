@@ -95,6 +95,7 @@
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileSystemEntry.cs" />
     <Compile Include="Models\Folder.cs" />
+    <Compile Include="Models\Reference.cs" />
     <Compile Include="Services\FileSystemService.cs" />
     <Compile Include="Services\Interfaces\IFileSystemService.cs" />
     <Compile Include="ViewModels\FileSystemViewModel.cs" />
