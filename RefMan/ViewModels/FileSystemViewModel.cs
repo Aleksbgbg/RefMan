@@ -8,11 +8,13 @@
     {
         public FileSystemViewModel(IFileSystemFactory fileSystemFactory, IFileSystemService fileSystemService)
         {
-            RootFolder = fileSystemFactory.MakeFolder(fileSystemService.ReadRootFolder());
+            IFolderViewModel rootFolder = fileSystemFactory.MakeFolder(fileSystemService.ReadRootFolder());
 
-            RootFolder.IsExpanded = true;
+            RootFolderArray = new[] { rootFolder };
+
+            rootFolder.IsExpanded = true;
         }
 
-        public IFolderViewModel RootFolder { get; }
+        public IFolderViewModel[] RootFolderArray { get; }
     }
 }
