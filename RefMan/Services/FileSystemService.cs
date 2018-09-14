@@ -12,6 +12,8 @@
     {
         private const string Root = @"E:\Documents\References";
 
+        private const string RefManExtension = ".ref";
+
         public FileSystemService()
         {
             Directory.CreateDirectory(Root);
@@ -41,7 +43,9 @@
         {
             return Directory.GetDirectories(path)
                             .Select(directory => new Folder(directory, Path.GetFileName(directory)))
-                            .Concat<FileSystemEntry>(Directory.GetFiles(path).Select(file => new File(file, Path.GetFileNameWithoutExtension(file))))
+                            .Concat<FileSystemEntry>(Directory.GetFiles(path)
+                                                              .Where(file => Path.GetExtension(file) == RefManExtension)
+                                                              .Select(file => new File(file, Path.GetFileNameWithoutExtension(file))))
                             .ToArray();
         }
     }
