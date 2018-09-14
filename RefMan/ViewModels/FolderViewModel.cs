@@ -1,5 +1,6 @@
 ﻿namespace RefMan.ViewModels
 {
+    using System;
     using System.Linq;
 
     using Caliburn.Micro;
@@ -42,9 +43,20 @@
                 if (_isExpanded)
                 {
                     Folders.AddRange(_fileSystemService.ReadEntries(FileSystemEntry)
-                                                       .Where(entry => entry is Folder)
-                                                       .Cast<Folder>()
-                                                       .Select(_fileSystemFactory.MakeFolder));
+                                                       .Select<FileSystemEntry, IFileSystemEntryViewModel<FileSystemEntry>>(entry =>
+                                                       {
+                                                           switch (entry)
+                                                           {
+                                                               case File file:
+                                                                   return _fileSystemFactory.MakeFile(file);
+
+                                                               case Folder folder:
+                                                                   return _fileSystemFactory.MakeFolder(folder);
+
+                                                               default:
+                                                                   throw new ArgumentException("Invalid FileSystemEntry type.");
+                                                           }
+                                                       }));
                 }
                 else
                 {
