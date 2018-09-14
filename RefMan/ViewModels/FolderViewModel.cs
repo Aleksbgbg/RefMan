@@ -9,7 +9,7 @@
     using RefMan.Services.Interfaces;
     using RefMan.ViewModels.Interfaces;
 
-    internal class FolderViewModel : ViewModelBase, IFolderViewModel
+    internal class FolderViewModel : FileSystemEntryViewModel<Folder>, IFolderViewModel
     {
         private readonly IFileSystemFactory _fileSystemFactory;
 
@@ -23,9 +23,7 @@
             _fileSystemService = fileSystemService;
         }
 
-        public Folder Folder { get; private set; }
-
-        public IObservableCollection<IFolderViewModel> Folders { get; } = new BindableCollection<IFolderViewModel>();
+        public IObservableCollection<IFileSystemEntryViewModel<FileSystemEntry>> Folders { get; } = new BindableCollection<IFileSystemEntryViewModel<FileSystemEntry>>();
 
         private bool _isExpanded;
         public bool IsExpanded
@@ -43,7 +41,7 @@
 
                 if (_isExpanded)
                 {
-                    Folders.AddRange(_fileSystemService.ReadEntries(Folder)
+                    Folders.AddRange(_fileSystemService.ReadEntries(FileSystemEntry)
                                                        .Where(entry => entry is Folder)
                                                        .Cast<Folder>()
                                                        .Select(_fileSystemFactory.MakeFolder));
@@ -57,9 +55,9 @@
 
         public void Initialize(Folder folder)
         {
-            Folder = folder;
+            FileSystemEntry = folder;
 
-            _canExpand = _fileSystemService.CanExpand(Folder);
+            _canExpand = _fileSystemService.CanExpand(FileSystemEntry);
             AddDummyFolder();
         }
 

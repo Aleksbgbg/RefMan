@@ -21,6 +21,6 @@
                 </Style>
             </Image.Style>
         </Image>
-        <TextBlock Text="{Binding Folder.Name, Mode=OneTime}"/>
+        <TextBlock Text="{Binding FileSystemEntry.Name, Mode=OneTime}"/>
     </StackPanel>
 </UserControl>

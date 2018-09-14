@@ -2,7 +2,7 @@
 {
     using RefMan.Models;
 
-    internal interface IFolderViewModel : IViewModelBase
+    internal interface IFolderViewModel : IFileSystemEntryViewModel<Folder>
     {
         bool IsExpanded { get; set; }
 
