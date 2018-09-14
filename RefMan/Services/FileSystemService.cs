@@ -3,10 +3,13 @@
     using System.IO;
     using System.Linq;
 
+    using Newtonsoft.Json;
+
     using RefMan.Models;
     using RefMan.Services.Interfaces;
 
     using File = RefMan.Models.File;
+    using IOFile = System.IO.File;
 
     internal class FileSystemService : IFileSystemService
     {
@@ -37,6 +40,20 @@
         public bool CanExpand(Folder folder)
         {
             return Directory.EnumerateFileSystemEntries(folder.Path).Any();
+        }
+
+        public Reference[] LoadReferences(File file)
+        {
+            Reference[] references = JsonConvert.DeserializeObject<Reference[]>(IOFile.ReadAllText(file.Path));
+
+            file.LoadReferences(references);
+
+            return references;
+        }
+
+        public void SaveFile(File file)
+        {
+            IOFile.WriteAllText(file.Path, JsonConvert.SerializeObject(file.References));
         }
 
         private static FileSystemEntry[] ReadEntries(string path)

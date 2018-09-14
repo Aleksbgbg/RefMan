@@ -11,5 +11,9 @@
         FileSystemEntry[] ReadEntries(Folder folder);
 
         bool CanExpand(Folder folder);
+
+        Reference[] LoadReferences(File file);
+
+        void SaveFile(File file);
     }
 }
