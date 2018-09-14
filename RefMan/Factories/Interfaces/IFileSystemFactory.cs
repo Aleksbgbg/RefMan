@@ -5,6 +5,8 @@
 
     internal interface IFileSystemFactory
     {
+        IFileViewModel MakeFile(File file);
+
         IFolderViewModel MakeFolder(Folder folder);
     }
 }
