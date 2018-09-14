@@ -7,9 +7,9 @@
              xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
              mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:FileSystemViewModel}">
-    <TreeView ItemsSource="{Binding RootFolder.Folders, Mode=OneTime}">
+    <TreeView ItemsSource="{Binding RootFolder.FileSystemEntries, Mode=OneTime}">
         <TreeView.Resources>
-            <HierarchicalDataTemplate DataType="{x:Type ViewModels:FolderViewModel}" ItemsSource="{Binding Folders}">
+            <HierarchicalDataTemplate DataType="{x:Type ViewModels:FolderViewModel}" ItemsSource="{Binding FileSystemEntries, Mode=OneTime}">
                 <ContentControl Caliburn:View.Model="{Binding Mode=OneTime}"/>
             </HierarchicalDataTemplate>
         </TreeView.Resources>

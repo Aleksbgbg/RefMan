@@ -24,7 +24,7 @@
             _fileSystemService = fileSystemService;
         }
 
-        public IObservableCollection<IFileSystemEntryViewModel<FileSystemEntry>> Folders { get; } = new BindableCollection<IFileSystemEntryViewModel<FileSystemEntry>>();
+        public IObservableCollection<IFileSystemEntryViewModel<FileSystemEntry>> FileSystemEntries { get; } = new BindableCollection<IFileSystemEntryViewModel<FileSystemEntry>>();
 
         private bool _isExpanded;
         public bool IsExpanded
@@ -38,11 +38,11 @@
                 _isExpanded = value;
                 NotifyOfPropertyChange(() => IsExpanded);
 
-                Folders.Clear();
+                FileSystemEntries.Clear();
 
                 if (_isExpanded)
                 {
-                    Folders.AddRange(_fileSystemService.ReadEntries(FileSystemEntry)
+                    FileSystemEntries.AddRange(_fileSystemService.ReadEntries(FileSystemEntry)
                                                        .Select<FileSystemEntry, IFileSystemEntryViewModel<FileSystemEntry>>(entry =>
                                                        {
                                                            switch (entry)
@@ -77,7 +77,7 @@
         {
             if (_canExpand)
             {
-                Folders.Add(null);
+                FileSystemEntries.Add(null);
             }
         }
     }
