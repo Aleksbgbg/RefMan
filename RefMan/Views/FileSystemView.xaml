@@ -12,6 +12,10 @@
             <HierarchicalDataTemplate DataType="{x:Type ViewModels:FolderViewModel}" ItemsSource="{Binding FileSystemEntries, Mode=OneTime}">
                 <ContentControl Caliburn:View.Model="{Binding Mode=OneTime}"/>
             </HierarchicalDataTemplate>
+
+            <DataTemplate DataType="{x:Type ViewModels:FileViewModel}">
+                <ContentControl Caliburn:View.Model="{Binding Mode=OneTime}"/>
+            </DataTemplate>
         </TreeView.Resources>
 
         <TreeView.ItemContainerStyle>
