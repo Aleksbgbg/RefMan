@@ -44,6 +44,7 @@
             _container.Singleton<IFileSystemViewModel, FileSystemViewModel>();
 
             _container.PerRequest<IFolderViewModel, FolderViewModel>();
+            _container.PerRequest<IFileViewModel, FileViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)
