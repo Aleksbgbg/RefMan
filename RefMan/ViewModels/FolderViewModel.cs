@@ -26,21 +26,19 @@
 
         public IObservableCollection<IFileSystemEntryViewModel<FileSystemEntry>> FileSystemEntries { get; } = new BindableCollection<IFileSystemEntryViewModel<FileSystemEntry>>();
 
-        private bool _isExpanded;
-        public bool IsExpanded
+        public override bool IsExpanded
         {
-            get => _isExpanded;
+            get => base.IsExpanded;
 
             set
             {
-                if (!_canExpand || _isExpanded == value) return;
+                if (!_canExpand || base.IsExpanded == value) return;
 
-                _isExpanded = value;
-                NotifyOfPropertyChange(() => IsExpanded);
+                base.IsExpanded = value;
 
                 FileSystemEntries.Clear();
 
-                if (_isExpanded)
+                if (base.IsExpanded)
                 {
                     FileSystemEntries.AddRange(_fileSystemService.ReadEntries(FileSystemEntry)
                                                        .Select<FileSystemEntry, IFileSystemEntryViewModel<FileSystemEntry>>(entry =>
