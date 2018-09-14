@@ -95,6 +95,8 @@
     <Compile Include="Services\Interfaces\IFileSystemService.cs" />
     <Compile Include="ViewModels\FileSystemViewModel.cs" />
     <Compile Include="ViewModels\FolderViewModel.cs" />
+    <Compile Include="ViewModels\FileSystemEntryViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IFileSystemEntryViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFileSystemViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFolderViewModel.cs" />
     <Compile Include="Views\FileSystemView.xaml.cs">
