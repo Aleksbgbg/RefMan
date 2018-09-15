@@ -10,8 +10,7 @@
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Button DockPanel.Dock="Right" Content="Reference" 
-                    Caliburn:Message.Attach="Reference(url)"
-                    IsEnabled="{Binding ReferencesViewModel.HasLoadedFile}"/>
+                    Caliburn:Message.Attach="Reference(url)"/>
             <TextBox x:Name="Url"/>
         </DockPanel>
         
