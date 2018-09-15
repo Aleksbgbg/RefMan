@@ -19,12 +19,12 @@
 
             HtmlNode headNode = document.DocumentNode.SelectSingleNode("/html/head");
 
+            Uri uri = new Uri(url);
+
             if (headNode == null)
             {
-                return new Reference();
+                return new Reference(url, null, null, uri.Host, DateTime.Now);
             }
-
-            Uri uri = new Uri(url);
 
             string imageUrl = headNode.SelectSingleNode("link[@href and (@rel='icon' or @rel='shortcut icon')]")?.Attributes["href"].Value;
 
