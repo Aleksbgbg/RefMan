@@ -10,24 +10,24 @@
         {
         }
 
-        public Reference(string url, string imageUrl, string pageTitle, string websiteName, string publisher, DateTime accessDate)
+        public Reference(string url, string imageUrl, string pageTitle, string websiteName, DateTime accessDate)
         {
             Url = url;
             ImageUrl = imageUrl;
             PageTitle = pageTitle;
             WebsiteName = websiteName;
-            Publisher = publisher;
+            //Publisher = publisher;
             AccessDate = accessDate;
         }
 
         [JsonConstructor]
-        public Reference(string url, string imageUrl, string pageTitle, string websiteName, string publisher, DateTime accessDate, int yearPublished)
+        public Reference(string url, string imageUrl, string pageTitle, string websiteName, DateTime accessDate, int yearPublished)
         {
             Url = url;
             ImageUrl = imageUrl;
             PageTitle = pageTitle;
             WebsiteName = websiteName;
-            Publisher = publisher;
+            //Publisher = publisher;
             AccessDate = accessDate;
             YearPublished = yearPublished;
         }
@@ -44,8 +44,8 @@
         [JsonProperty("website_name")]
         public string WebsiteName { get; }
 
-        [JsonProperty("publisher")]
-        public string Publisher { get; }
+        //[JsonProperty("publisher")]
+        //public string Publisher { get; }
 
         [JsonProperty("access_date")]
         public DateTime AccessDate { get; }
