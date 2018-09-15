@@ -57,5 +57,13 @@
 
             References.AddRange(message.References.Select(_referenceFactory.MakeReference));
         }
+
+        public void Add(Reference reference)
+        {
+            LoadedFile.References.Add(reference);
+            _fileSystemService.SaveFile(LoadedFile);
+
+            References.Add(_referenceFactory.MakeReference(reference));
+        }
     }
 }
