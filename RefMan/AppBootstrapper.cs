@@ -34,6 +34,7 @@
             _container.Singleton<IReferenceFactory, ReferenceFactory>();
 
             // Register Services
+            _container.Singleton<IEventAggregator, EventAggregator>();
             _container.Singleton<IWindowManager, WindowManager>();
 
             _container.Singleton<IFileSystemService, FileSystemService>();
