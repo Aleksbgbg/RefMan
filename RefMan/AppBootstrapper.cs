@@ -38,6 +38,7 @@
             _container.Singleton<IWindowManager, WindowManager>();
 
             _container.Singleton<IFileSystemService, FileSystemService>();
+            _container.Singleton<IReferencingService, ReferencingService>();
 
             // Register ViewModels
             _container.Singleton<IShellViewModel, ShellViewModel>();

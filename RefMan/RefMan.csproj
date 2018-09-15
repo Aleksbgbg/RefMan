@@ -62,6 +62,7 @@
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.3.2.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -120,6 +121,8 @@
     <Compile Include="Models\Reference.cs" />
     <Compile Include="Services\FileSystemService.cs" />
     <Compile Include="Services\Interfaces\IFileSystemService.cs" />
+    <Compile Include="Services\Interfaces\IReferencingService.cs" />
+    <Compile Include="Services\ReferencingService.cs" />
     <Compile Include="ViewModels\FileSystemViewModel.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\FolderViewModel.cs" />
