@@ -15,7 +15,9 @@
         {
             Reference reference = (Reference)value;
 
-            return $"{reference.WebsiteName}. ({reference.YearPublished}) {reference.PageTitle}. [online] Available at: {reference.Url} [Accessed {reference.AccessDate:dd MMM. yy}]";
+            string yearPublishedString = reference.YearPublished == null ? "n.d." : reference.YearPublished.ToString();
+
+            return $"{reference.WebsiteName}. ({yearPublishedString}) {reference.PageTitle}. [online] Available at: {reference.Url} [Accessed {reference.AccessDate:dd MMM. yy}]";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

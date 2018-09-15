@@ -15,7 +15,9 @@
         {
             Reference reference = (Reference)value;
 
-            return $"({reference.WebsiteName}, {reference.YearPublished})";
+            string yearPublishedString = reference.YearPublished == null ? "n.d." : reference.YearPublished.ToString();
+
+            return $"({reference.WebsiteName}, {yearPublishedString})";
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
