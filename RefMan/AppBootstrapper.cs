@@ -45,6 +45,8 @@
 
             _container.PerRequest<IFolderViewModel, FolderViewModel>();
             _container.PerRequest<IFileViewModel, FileViewModel>();
+
+            _container.Singleton<IReferencesViewModel, ReferencesViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

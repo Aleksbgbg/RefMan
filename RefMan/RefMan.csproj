@@ -89,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ReferencesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -109,6 +113,8 @@
     <Compile Include="ViewModels\Interfaces\IFileSystemViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFileViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFolderViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IReferencesViewModel.cs" />
+    <Compile Include="ViewModels\ReferencesViewModel.cs" />
     <Compile Include="Views\FileSystemView.xaml.cs">
       <DependentUpon>FileSystemView.xaml</DependentUpon>
     </Compile>
@@ -121,6 +127,9 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ReferencesView.xaml.cs">
+      <DependentUpon>ReferencesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
