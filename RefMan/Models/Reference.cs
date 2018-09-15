@@ -7,9 +7,10 @@
     internal class Reference
     {
         [JsonConstructor]
-        public Reference(string url, string pageTitle, string websiteName, string publisher, DateTime accessDate, int yearPublished)
+        public Reference(string url, string imageUrl, string pageTitle, string websiteName, string publisher, DateTime accessDate, int yearPublished)
         {
             Url = url;
+            ImageUrl = imageUrl;
             PageTitle = pageTitle;
             WebsiteName = websiteName;
             Publisher = publisher;
@@ -17,22 +18,25 @@
             YearPublished = yearPublished;
         }
 
-        [JsonProperty("Url")]
+        [JsonProperty("url")]
         public string Url { get; }
 
-        [JsonProperty("Url")]
+        [JsonProperty("image_url")]
+        public string ImageUrl { get; }
+
+        [JsonProperty("page_title")]
         public string PageTitle { get; }
 
-        [JsonProperty("WebsiteName")]
+        [JsonProperty("website_name")]
         public string WebsiteName { get; }
 
-        [JsonProperty("Publisher")]
+        [JsonProperty("publisher")]
         public string Publisher { get; }
 
-        [JsonProperty("AccessDate")]
+        [JsonProperty("access_date")]
         public DateTime AccessDate { get; }
 
-        [JsonProperty("YearPublished")]
+        [JsonProperty("year_published")]
         public int YearPublished { get; }
     }
 }
