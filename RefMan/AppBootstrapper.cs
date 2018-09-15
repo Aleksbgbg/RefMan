@@ -47,6 +47,8 @@
             _container.PerRequest<IFileViewModel, FileViewModel>();
 
             _container.Singleton<IReferencesViewModel, ReferencesViewModel>();
+
+            _container.PerRequest<IReferenceViewModel, ReferenceViewModel>();
         }
 
         protected override object GetInstance(Type service, string key)

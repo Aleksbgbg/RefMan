@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="RefMan.Views.ReferenceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Converters="clr-namespace:RefMan.Converters"
+			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
+			 mc:Ignorable="d"
+			 d:DataContext="{d:DesignInstance ViewModels:ReferenceViewModel}">
+    <StackPanel DockPanel.Dock="Top">
+        <StackPanel Orientation="Horizontal">
+            <Image Source="{Binding Reference.ImageUrl, Mode=OneTime}"
+                   MaxHeight="25" MaxWidth="25" VerticalAlignment="Center"
+                   Margin="2.5, 0"/>
+
+            <TextBlock Text="{Binding Reference.PageTitle, Mode=OneTime}"
+                       FontSize="16" FontWeight="DemiBold"/>
+        </StackPanel>
+
+        <TextBlock Text="In-text:" FontWeight="DemiBold"/>
+        <TextBox Text="{Binding Reference, Mode=OneTime,
+            Converter={x:Static Converters:InTextReferenceConverter.Default}}"
+                 Style="{StaticResource TextBox.SelectableTextBlock}"/>
+
+        <TextBlock Text="Bibliography:" FontWeight="DemiBold" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Reference, Mode=OneTime,
+            Converter={x:Static Converters:BibliographyTextReferenceConverter.Default}}"
+                 Style="{StaticResource TextBox.SelectableTextBlock}"/>
+    </StackPanel>
+</UserControl>
