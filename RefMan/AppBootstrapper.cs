@@ -48,6 +48,8 @@
             _container.PerRequest<IFolderViewModel, FolderViewModel>();
             _container.PerRequest<IFileViewModel, FileViewModel>();
 
+            _container.Singleton<IReferenceGeneratorViewModel, ReferenceGeneratorViewModel>();
+
             _container.Singleton<IReferencesViewModel, ReferencesViewModel>();
 
             _container.PerRequest<IReferenceViewModel, ReferenceViewModel>();

@@ -89,6 +89,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ReferenceGeneratorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ReferencesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -121,8 +125,10 @@
     <Compile Include="ViewModels\Interfaces\IFileSystemViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFileViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFolderViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IReferenceGeneratorViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IReferencesViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IReferenceViewModel.cs" />
+    <Compile Include="ViewModels\ReferenceGeneratorViewModel.cs" />
     <Compile Include="ViewModels\ReferencesViewModel.cs" />
     <Compile Include="ViewModels\ReferenceViewModel.cs" />
     <Compile Include="Views\FileSystemView.xaml.cs">
@@ -137,6 +143,9 @@
     <Compile Include="Views\MainView.xaml.cs">
       <DependentUpon>MainView.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\ReferenceGeneratorView.xaml.cs">
+      <DependentUpon>ReferenceGeneratorView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ReferencesView.xaml.cs">
       <DependentUpon>ReferencesView.xaml</DependentUpon>
