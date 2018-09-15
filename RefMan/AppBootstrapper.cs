@@ -31,6 +31,7 @@
         {
             // Register Factories
             _container.Singleton<IFileSystemFactory, FileSystemFactory>();
+            _container.Singleton<IReferenceFactory, ReferenceFactory>();
 
             // Register Services
             _container.Singleton<IWindowManager, WindowManager>();

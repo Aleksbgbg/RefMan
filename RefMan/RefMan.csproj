@@ -105,6 +105,8 @@
     <Compile Include="Converters\InTextReferenceConverter.cs" />
     <Compile Include="Factories\FileSystemFactory.cs" />
     <Compile Include="Factories\Interfaces\IFileSystemFactory.cs" />
+    <Compile Include="Factories\Interfaces\IReferenceFactory.cs" />
+    <Compile Include="Factories\ReferenceFactory.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileSystemEntry.cs" />
     <Compile Include="Models\Folder.cs" />
