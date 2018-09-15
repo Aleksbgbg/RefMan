@@ -11,17 +11,12 @@
         }
 
         public Reference(string url, string imageUrl, string pageTitle, string websiteName, DateTime accessDate)
+            : this(url, imageUrl, pageTitle, websiteName, accessDate, null)
         {
-            Url = url;
-            ImageUrl = imageUrl;
-            PageTitle = pageTitle;
-            WebsiteName = websiteName;
-            //Publisher = publisher;
-            AccessDate = accessDate;
         }
 
         [JsonConstructor]
-        public Reference(string url, string imageUrl, string pageTitle, string websiteName, DateTime accessDate, int yearPublished)
+        public Reference(string url, string imageUrl, string pageTitle, string websiteName, DateTime accessDate, int? yearPublished)
         {
             Url = url;
             ImageUrl = imageUrl;
