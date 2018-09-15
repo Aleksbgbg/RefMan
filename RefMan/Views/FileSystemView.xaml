@@ -9,7 +9,8 @@
 			 d:DataContext="{d:DesignInstance ViewModels:FileSystemViewModel}">
     <TreeView ItemsSource="{Binding RootFolderArray, Mode=OneTime}">
         <TreeView.Resources>
-            <HierarchicalDataTemplate DataType="{x:Type ViewModels:FolderViewModel}" ItemsSource="{Binding FileSystemEntries, Mode=OneTime}">
+            <HierarchicalDataTemplate DataType="{x:Type ViewModels:FolderViewModel}"
+                                      ItemsSource="{Binding FileSystemEntries, Mode=OneTime}">
                 <ContentControl Caliburn:View.Model="{Binding Mode=OneTime}"/>
             </HierarchicalDataTemplate>
 
