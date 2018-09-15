@@ -36,8 +36,11 @@
 
                 _loadedFile = value;
                 NotifyOfPropertyChange(() => LoadedFile);
+                NotifyOfPropertyChange(() => HasLoadedFile);
             }
         }
+
+        public bool HasLoadedFile => LoadedFile != null;
 
         public void Handle(File message)
         {
