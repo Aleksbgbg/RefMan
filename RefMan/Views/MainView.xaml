@@ -15,6 +15,6 @@
 
         <ContentControl Caliburn:View.Model="{Binding FileSystemViewModel, Mode=OneTime}"/>
 
-        <ContentControl Grid.Column="1" Caliburn:View.Model="{Binding ReferencesViewModel, Mode=OneTime}"/>
+        <ContentControl Grid.Column="1" Caliburn:View.Model="{Binding ReferenceGeneratorViewModel, Mode=OneTime}"/>
     </Grid>
 </UserControl>
