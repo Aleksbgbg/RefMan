@@ -6,6 +6,20 @@
 
     internal class Reference
     {
+        public Reference()
+        {
+        }
+
+        public Reference(string url, string imageUrl, string pageTitle, string websiteName, string publisher, DateTime accessDate)
+        {
+            Url = url;
+            ImageUrl = imageUrl;
+            PageTitle = pageTitle;
+            WebsiteName = websiteName;
+            Publisher = publisher;
+            AccessDate = accessDate;
+        }
+
         [JsonConstructor]
         public Reference(string url, string imageUrl, string pageTitle, string websiteName, string publisher, DateTime accessDate, int yearPublished)
         {
@@ -37,6 +51,6 @@
         public DateTime AccessDate { get; }
 
         [JsonProperty("year_published")]
-        public int YearPublished { get; }
+        public int? YearPublished { get; }
     }
 }
