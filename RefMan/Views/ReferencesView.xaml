@@ -3,12 +3,21 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Caliburn="http://www.caliburnproject.org"
 			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:ReferencesViewModel}">
     <DockPanel>
-        <TextBlock DockPanel.Dock="Top" Text="{Binding LoadedFile.Name}"
-                   HorizontalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button Margin="5, 0"
+                    Caliburn:Message.Attach="CopyReferencesToClipboard">
+                <Image Source="{StaticResource Clipboard}"
+                       Height="20"/>
+            </Button>
+
+            <TextBlock Text="{Binding LoadedFile.Name}"
+                       FontSize="16" FontWeight="DemiBold"/>
+        </StackPanel>
 
         <ScrollViewer>
             <ItemsControl x:Name="References"/>

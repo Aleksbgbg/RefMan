@@ -1,5 +1,6 @@
 ﻿namespace RefMan.ViewModels
 {
+    using System.Collections.Generic;
     using System.Linq;
 
     using Caliburn.Micro;
@@ -13,11 +14,14 @@
     {
         private readonly IReferenceFactory _referenceFactory;
 
+        private readonly IClipboardService _clipboardService;
+
         private readonly IFileSystemService _fileSystemService;
 
-        public ReferencesViewModel(IReferenceFactory referenceFactory, IEventAggregator eventAggregator, IFileSystemService fileSystemService)
+        public ReferencesViewModel(IReferenceFactory referenceFactory, IEventAggregator eventAggregator, IClipboardService clipboardService, IFileSystemService fileSystemService)
         {
             _referenceFactory = referenceFactory;
+            _clipboardService = clipboardService;
             _fileSystemService = fileSystemService;
 
             eventAggregator.Subscribe(this);
@@ -67,6 +71,11 @@
             _fileSystemService.SaveFile(LoadedFile);
 
             References.Add(_referenceFactory.MakeReference(reference));
+        }
+
+        public IEnumerable<IResult> CopyReferencesToClipboard()
+        {
+            yield return _clipboardService.CopyToClipboard(LoadedFile.References).AsResult();
         }
     }
 }
