@@ -7,5 +7,14 @@
 			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:MainViewModel}">
-    <ContentControl Caliburn:View.Model="{Binding FileSystemViewModel, Mode=OneTime}"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <ContentControl Caliburn:View.Model="{Binding FileSystemViewModel, Mode=OneTime}"/>
+
+        <ContentControl Grid.Column="1" Caliburn:View.Model="{Binding ReferencesViewModel, Mode=OneTime}"/>
+    </Grid>
 </UserControl>

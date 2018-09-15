@@ -4,11 +4,14 @@
 
     internal class MainViewModel : ViewModelBase, IMainViewModel
     {
-        public MainViewModel(IFileSystemViewModel fileSystemViewModel)
+        public MainViewModel(IFileSystemViewModel fileSystemViewModel, IReferencesViewModel referencesViewModel)
         {
             FileSystemViewModel = fileSystemViewModel;
+            ReferencesViewModel = referencesViewModel;
         }
 
         public IFileSystemViewModel FileSystemViewModel { get; }
+
+        public IReferencesViewModel ReferencesViewModel { get; }
     }
 }
