@@ -6,4 +6,7 @@
 			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:ReferencesViewModel}">
+    <ScrollViewer>
+        <ItemsControl x:Name="References"/>
+    </ScrollViewer>
 </UserControl>
