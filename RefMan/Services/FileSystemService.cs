@@ -27,11 +27,6 @@
             return new Folder(Root, Path.GetFileName(Root));
         }
 
-        public FileSystemEntry[] ReadRootEntries()
-        {
-            return ReadEntries(Root);
-        }
-
         public FileSystemEntry[] ReadEntries(Folder folder)
         {
             return ReadEntries(folder.Path);

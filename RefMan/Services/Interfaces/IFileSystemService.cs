@@ -6,8 +6,6 @@
     {
         Folder ReadRootFolder();
 
-        FileSystemEntry[] ReadRootEntries();
-
         FileSystemEntry[] ReadEntries(Folder folder);
 
         bool CanExpand(Folder folder);
