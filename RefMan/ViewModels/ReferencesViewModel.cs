@@ -15,8 +15,6 @@
 
         private readonly IFileSystemService _fileSystemService;
 
-        private File _loadedFile;
-
         public ReferencesViewModel(IReferenceFactory referenceFactory, IEventAggregator eventAggregator, IFileSystemService fileSystemService)
         {
             _referenceFactory = referenceFactory;
@@ -27,14 +25,28 @@
 
         public IObservableCollection<IReferenceViewModel> References { get; } = new BindableCollection<IReferenceViewModel>();
 
+        private File _loadedFile;
+        public File LoadedFile
+        {
+            get => _loadedFile;
+
+            set
+            {
+                if (_loadedFile == value) return;
+
+                _loadedFile = value;
+                NotifyOfPropertyChange(() => LoadedFile);
+            }
+        }
+
         public void Handle(File message)
         {
-            if (_loadedFile == message)
+            if (LoadedFile == message)
             {
                 return;
             }
 
-            _loadedFile = message;
+            LoadedFile = message;
 
             References.Clear();
 

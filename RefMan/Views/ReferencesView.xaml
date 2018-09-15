@@ -6,7 +6,12 @@
 			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:ReferencesViewModel}">
-    <ScrollViewer>
-        <ItemsControl x:Name="References"/>
-    </ScrollViewer>
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="{Binding LoadedFile.Name}"
+                   HorizontalAlignment="Center" FontSize="16" FontWeight="DemiBold"/>
+
+        <ScrollViewer>
+            <ItemsControl x:Name="References"/>
+        </ScrollViewer>
+    </DockPanel>
 </UserControl>
