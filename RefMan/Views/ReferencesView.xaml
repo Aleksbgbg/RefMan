@@ -8,7 +8,8 @@
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:ReferencesViewModel}">
     <DockPanel>
-        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" HorizontalAlignment="Center">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
+                    HorizontalAlignment="Center" Margin="5">
             <Button Margin="5, 0"
                     Caliburn:Message.Attach="CopyReferencesToClipboard">
                 <Image Source="{StaticResource Clipboard}"
@@ -19,7 +20,7 @@
                        FontSize="16" FontWeight="DemiBold"/>
         </StackPanel>
 
-        <ScrollViewer>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
             <ItemsControl x:Name="References"/>
         </ScrollViewer>
     </DockPanel>
