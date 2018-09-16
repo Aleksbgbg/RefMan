@@ -6,6 +6,6 @@
     {
         Reference Reference { get; }
 
-        void Initialize(Reference reference);
+        void Initialize(Reference reference, File referenceFile);
     }
 }

@@ -5,6 +5,6 @@
 
     internal interface IReferenceFactory
     {
-        IReferenceViewModel MakeReference(Reference reference);
+        IReferenceViewModel MakeReference(Reference reference, File referenceFile);
     }
 }

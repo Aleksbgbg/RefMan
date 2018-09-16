@@ -59,7 +59,7 @@
                 _fileSystemService.LoadReferences(message);
             }
 
-            References.AddRange(message.References.Select(_referenceFactory.MakeReference));
+            References.AddRange(message.References.Select(reference => _referenceFactory.MakeReference(reference, LoadedFile)));
         }
 
         public void Handle(IReferenceViewModel message)
@@ -75,7 +75,7 @@
             LoadedFile.References.Add(reference);
             _fileSystemService.SaveFile(LoadedFile);
 
-            References.Add(_referenceFactory.MakeReference(reference));
+            References.Add(_referenceFactory.MakeReference(reference, LoadedFile));
         }
 
         public IEnumerable<IResult> CopyReferencesToClipboard()
