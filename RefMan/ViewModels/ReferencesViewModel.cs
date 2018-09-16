@@ -10,7 +10,7 @@
     using RefMan.Services.Interfaces;
     using RefMan.ViewModels.Interfaces;
 
-    internal class ReferencesViewModel : ViewModelBase, IReferencesViewModel, IHandle<File>
+    internal class ReferencesViewModel : ViewModelBase, IReferencesViewModel, IHandle<File>, IHandle<IReferenceViewModel>
     {
         private readonly IReferenceFactory _referenceFactory;
 
@@ -60,6 +60,14 @@
             }
 
             References.AddRange(message.References.Select(_referenceFactory.MakeReference));
+        }
+
+        public void Handle(IReferenceViewModel message)
+        {
+            References.Remove(message);
+
+            LoadedFile.References.Remove(message.Reference);
+            _fileSystemService.SaveFile(LoadedFile);
         }
 
         public void Add(Reference reference)
