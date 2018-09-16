@@ -10,6 +10,8 @@
 
         bool CanExpand(Folder folder);
 
+        void SaveFolderConfig(Folder folder);
+
         Reference[] LoadReferences(File file);
 
         void SaveFile(File file);

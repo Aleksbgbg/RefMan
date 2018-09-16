@@ -37,6 +37,13 @@
             return Directory.EnumerateFileSystemEntries(folder.Path).Any();
         }
 
+        public void SaveFolderConfig(Folder folder)
+        {
+            string configFile = Path.Combine(folder.Path, "Config.json");
+
+            IOFile.WriteAllText(configFile, JsonConvert.SerializeObject(folder));
+        }
+
         public Reference[] LoadReferences(File file)
         {
             string fileText = IOFile.ReadAllText(file.Path);
@@ -62,7 +69,19 @@
         private static FileSystemEntry[] ReadEntries(string path)
         {
             return Directory.GetDirectories(path)
-                            .Select(directory => new Folder(directory, Path.GetFileName(directory)))
+                            .Select(directory =>
+                            {
+                                string configFile = Path.Combine(directory, "Config.json");
+
+                                string directoryName = Path.GetFileName(directory);
+
+                                if (IOFile.Exists(configFile))
+                                {
+                                    return JsonConvert.DeserializeObject<Folder>(IOFile.ReadAllText(configFile));
+                                }
+
+                                return new Folder(directory, directoryName);
+                            })
                             .Concat<FileSystemEntry>(Directory.GetFiles(path)
                                                               .Where(file => Path.GetExtension(file) == RefManExtension)
                                                               .Select(file => new File(file, Path.GetFileNameWithoutExtension(file))))
