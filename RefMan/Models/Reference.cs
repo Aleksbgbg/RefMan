@@ -1,10 +1,13 @@
 ﻿namespace RefMan.Models
 {
     using System;
+    using System.ComponentModel;
+
+    using Caliburn.Micro;
 
     using Newtonsoft.Json;
 
-    internal class Reference : IFormattable
+    internal class Reference : PropertyChangedBase, IFormattable
     {
         public Reference()
         {
@@ -27,26 +30,109 @@
             YearPublished = yearPublished;
         }
 
+        private string _url;
         [JsonProperty("url")]
-        public string Url { get; }
+        [DisplayName("URL")]
+        [Description("The URL of the referenced webpage.")]
+        public string Url
+        {
+            get => _url;
 
+            set
+            {
+                if (_url == value) return;
+
+                _url = value;
+                NotifyOfPropertyChange(() => Url);
+            }
+        }
+
+        private string _imageUrl;
         [JsonProperty("image_url")]
-        public string ImageUrl { get; }
+        [Browsable(false)] // Prevents PropertyGrid generation for this property
+        public string ImageUrl
+        {
+            get => _imageUrl;
 
+            set
+            {
+                if (_imageUrl == value) return;
+
+                _imageUrl = value;
+                NotifyOfPropertyChange(() => ImageUrl);
+            }
+        }
+
+        private string _pageTitle;
         [JsonProperty("page_title")]
-        public string PageTitle { get; }
+        [DisplayName("Page Title")]
+        [Description("The title of the referenced webpage.")]
+        public string PageTitle
+        {
+            get => _pageTitle;
 
+            set
+            {
+                if (_pageTitle == value) return;
+
+                _pageTitle = value;
+                NotifyOfPropertyChange(() => PageTitle);
+            }
+        }
+
+        private string _websiteName;
         [JsonProperty("website_name")]
-        public string WebsiteName { get; }
+        [DisplayName("Website Name")]
+        [Description("The name of the referenced website.")]
+        public string WebsiteName
+        {
+            get => _websiteName;
+
+            set
+            {
+                if (_websiteName == value) return;
+
+                _websiteName = value;
+                NotifyOfPropertyChange(() => WebsiteName);
+            }
+        }
 
         //[JsonProperty("publisher")]
         //public string Publisher { get; }
 
+        private DateTime _accessDate;
         [JsonProperty("access_date")]
-        public DateTime AccessDate { get; }
+        [DisplayName("Access Date")]
+        [Description("The date on which the webpage was accessed.")]
+        public DateTime AccessDate
+        {
+            get => _accessDate;
 
+            set
+            {
+                if (_accessDate == value) return;
+
+                _accessDate = value;
+                NotifyOfPropertyChange(() => AccessDate);
+            }
+        }
+
+        private int? _yearPublished;
         [JsonProperty("year_published")]
-        public int? YearPublished { get; }
+        [DisplayName("Year Published")]
+        [Description("The year in which the webpage was published.")]
+        public int? YearPublished
+        {
+            get => _yearPublished;
+
+            set
+            {
+                if (_yearPublished == value) return;
+
+                _yearPublished = value;
+                NotifyOfPropertyChange(() => YearPublished);
+            }
+        }
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
