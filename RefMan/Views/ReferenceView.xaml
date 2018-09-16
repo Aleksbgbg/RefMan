@@ -7,24 +7,43 @@
 			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
 			 mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:ReferenceViewModel}">
-    <StackPanel DockPanel.Dock="Top">
-        <StackPanel Orientation="Horizontal">
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="2" HorizontalAlignment="Center">
             <Image Source="{Binding Reference.ImageUrl, Mode=OneTime}"
-                   MaxHeight="25" MaxWidth="25" VerticalAlignment="Center"
-                   Margin="2.5, 0"/>
+                   Height="25" Width="25"
+                   VerticalAlignment="Center" Margin="2.5, 0"/>
 
             <TextBlock Text="{Binding Reference.PageTitle, Mode=OneTime}"
                        FontSize="16" FontWeight="DemiBold"/>
         </StackPanel>
 
-        <TextBlock Text="In-text:" FontWeight="DemiBold"/>
-        <TextBox Text="{Binding Reference, Mode=OneTime,
-            Converter={x:Static Converters:InTextReferenceConverter.Default}}"
-                 Style="{StaticResource TextBox.SelectableTextBlock}"/>
+        <StackPanel Grid.Row="2">
+        </StackPanel>
 
-        <TextBlock Text="Bibliography:" FontWeight="DemiBold" VerticalAlignment="Top"/>
-        <TextBox Text="{Binding Reference, Mode=OneTime,
+        <StackPanel Grid.Column="2" Grid.Row="2">
+            <TextBlock Text="In-text:" FontWeight="DemiBold"/>
+            <TextBox
+                Text="{Binding Reference, Mode=OneTime,
+            Converter={x:Static Converters:InTextReferenceConverter.Default}}"
+                Style="{StaticResource TextBox.SelectableTextBlock}"/>
+
+            <TextBlock Text="Bibliography:" FontWeight="DemiBold" VerticalAlignment="Top"/>
+            <TextBox
+                Text="{Binding Reference, Mode=OneTime,
             Converter={x:Static Converters:BibliographyTextReferenceConverter.Default}}"
-                 Style="{StaticResource TextBox.SelectableTextBlock}"/>
-    </StackPanel>
+                Style="{StaticResource TextBox.SelectableTextBlock}"/>
+        </StackPanel>
+    </Grid>
 </UserControl>
