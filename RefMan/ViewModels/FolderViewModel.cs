@@ -36,25 +36,31 @@
 
                 base.IsExpanded = value;
 
+                if (FileSystemEntry.IsExpanded != value)
+                {
+                    FileSystemEntry.IsExpanded = value;
+                    _fileSystemService.SaveFolderConfig(FileSystemEntry);
+                }
+
                 FileSystemEntries.Clear();
 
                 if (base.IsExpanded)
                 {
                     FileSystemEntries.AddRange(_fileSystemService.ReadEntries(FileSystemEntry)
-                                                       .Select<FileSystemEntry, IFileSystemEntryViewModel<FileSystemEntry>>(entry =>
-                                                       {
-                                                           switch (entry)
-                                                           {
-                                                               case File file:
-                                                                   return _fileSystemFactory.MakeFile(file);
+                                                                 .Select<FileSystemEntry, IFileSystemEntryViewModel<FileSystemEntry>>(entry =>
+                                                                 {
+                                                                     switch (entry)
+                                                                     {
+                                                                         case File file:
+                                                                             return _fileSystemFactory.MakeFile(file);
 
-                                                               case Folder folder:
-                                                                   return _fileSystemFactory.MakeFolder(folder);
+                                                                         case Folder folder:
+                                                                             return _fileSystemFactory.MakeFolder(folder);
 
-                                                               default:
-                                                                   throw new ArgumentException("Invalid FileSystemEntry type.");
-                                                           }
-                                                       }));
+                                                                         default:
+                                                                             throw new ArgumentException("Invalid FileSystemEntry type.");
+                                                                     }
+                                                                 }));
                 }
                 else
                 {
@@ -67,13 +73,14 @@
         {
             FileSystemEntry = folder;
 
-            _canExpand = _fileSystemService.CanExpand(FileSystemEntry);
+            _canExpand = _fileSystemService.CanExpand(folder);
+            IsExpanded = folder.IsExpanded;
             AddDummyFolder();
         }
 
         private void AddDummyFolder()
         {
-            if (_canExpand)
+            if (_canExpand && FileSystemEntries.Count == 0)
             {
                 FileSystemEntries.Add(null);
             }
