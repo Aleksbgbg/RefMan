@@ -3,6 +3,7 @@
 			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:Caliburn="http://www.caliburnproject.org"
              xmlns:Converters="clr-namespace:RefMan.Converters"
 			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
 			 mc:Ignorable="d"
@@ -30,6 +31,10 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2">
+            <Button ToolTip="Delete"
+                    Caliburn:Message.Attach="Delete">
+                <Image Source="{StaticResource Delete}"/>
+            </Button>
         </StackPanel>
 
         <StackPanel Grid.Column="2" Grid.Row="2">
