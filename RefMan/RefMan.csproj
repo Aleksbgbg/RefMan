@@ -112,8 +112,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="Converters\BibliographyTextReferenceConverter.cs" />
-    <Compile Include="Converters\InTextReferenceConverter.cs" />
     <Compile Include="Factories\FileSystemFactory.cs" />
     <Compile Include="Factories\Interfaces\IFileSystemFactory.cs" />
     <Compile Include="Factories\Interfaces\IReferenceFactory.cs" />
@@ -235,6 +233,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Converters\" />
     <Folder Include="EventArgs\" />
     <Folder Include="Extensions\" />
     <Folder Include="Helpers\" />
