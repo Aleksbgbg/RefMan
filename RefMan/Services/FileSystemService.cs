@@ -39,7 +39,15 @@
 
         public Reference[] LoadReferences(File file)
         {
-            Reference[] references = JsonConvert.DeserializeObject<Reference[]>(IOFile.ReadAllText(file.Path));
+            string fileText = IOFile.ReadAllText(file.Path);
+
+            if (string.IsNullOrWhiteSpace(fileText))
+            {
+                fileText = "[]";
+                IOFile.WriteAllText(file.Path, fileText);
+            }
+
+            Reference[] references = JsonConvert.DeserializeObject<Reference[]>(fileText);
 
             file.LoadReferences(references);
 
