@@ -16,6 +16,20 @@
 
         public Reference Reference { get; private set; }
 
+        private bool _isEditing;
+        public bool IsEditing
+        {
+            get => _isEditing;
+
+            set
+            {
+                if (_isEditing == value) return;
+
+                _isEditing = value;
+                NotifyOfPropertyChange(() => IsEditing);
+            }
+        }
+
         public void Initialize(Reference reference)
         {
             Reference = reference;
