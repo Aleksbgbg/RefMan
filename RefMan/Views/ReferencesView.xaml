@@ -11,6 +11,7 @@
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal"
                     HorizontalAlignment="Center" Margin="5">
             <Button Margin="5, 0"
+                    ToolTip="Copy to Clipboard"
                     Caliburn:Message.Attach="CopyReferencesToClipboard">
                 <Image Source="{StaticResource Clipboard}"
                        Height="20"/>
