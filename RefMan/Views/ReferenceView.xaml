@@ -40,6 +40,11 @@
                           ToolTip="Toggle Edit" Margin="0, 5">
                 <Image Source="{StaticResource Edit}"/>
             </ToggleButton>
+
+            <Button ToolTip="Visit Website" Margin="0, 5"
+                    Caliburn:Message.Attach="OpenInBrowser">
+                <Image Source="{StaticResource OpenInBrowser}"/>
+            </Button>
         </StackPanel>
 
         <ContentControl Grid.Column="2" Grid.Row="2">
