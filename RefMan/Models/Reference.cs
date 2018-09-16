@@ -4,7 +4,7 @@
 
     using Newtonsoft.Json;
 
-    internal class Reference
+    internal class Reference : IFormattable
     {
         public Reference()
         {
@@ -47,5 +47,27 @@
 
         [JsonProperty("year_published")]
         public int? YearPublished { get; }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            if (string.IsNullOrWhiteSpace(format))
+            {
+                throw new ArgumentException("Format specifier has no value.");
+            }
+
+            string yearPublishedString = YearPublished == null ? "n.d." : YearPublished.ToString();
+
+            switch (format.ToUpperInvariant())
+            {
+                case "IT": // In-Text
+                    return $"({WebsiteName}, {yearPublishedString})";
+
+                case "IB": // In-Bibliography
+                    return $"{WebsiteName}. ({yearPublishedString}) {PageTitle}. [online] Available at: {Url} [Accessed {AccessDate:dd MMM. yy}]";
+
+                default:
+                    throw new ArgumentOutOfRangeException("Format specifier is unexpected.");
+            }
+        }
     }
 }
