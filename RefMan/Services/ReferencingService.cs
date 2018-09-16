@@ -50,5 +50,14 @@
 
             return new Reference(url, imageUrl, pageTitle, websiteName, DateTime.Now);
         }
+
+        public async Task ReloadReference(Reference reference)
+        {
+            Reference reloadedReference = await Reference(reference.Url);
+
+            reference.ImageUrl = reloadedReference.ImageUrl;
+            reference.PageTitle = reloadedReference.PageTitle;
+            reference.WebsiteName = reloadedReference.WebsiteName;
+        }
     }
 }

@@ -7,5 +7,7 @@
     internal interface IReferencingService
     {
         Task<Reference> Reference(string url);
+
+        Task ReloadReference(Reference reference);
     }
 }
