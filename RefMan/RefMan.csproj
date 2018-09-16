@@ -129,7 +129,9 @@
     <Compile Include="Services\Interfaces\IClipboardService.cs" />
     <Compile Include="Services\Interfaces\IFileSystemService.cs" />
     <Compile Include="Services\Interfaces\IReferencingService.cs" />
+    <Compile Include="Services\Interfaces\IWebService.cs" />
     <Compile Include="Services\ReferencingService.cs" />
+    <Compile Include="Services\WebService.cs" />
     <Compile Include="ViewModels\FileSystemViewModel.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\FolderViewModel.cs" />

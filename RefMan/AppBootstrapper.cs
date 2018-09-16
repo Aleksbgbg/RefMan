@@ -40,6 +40,7 @@
             _container.Singleton<IClipboardService, ClipboardService>();
             _container.Singleton<IFileSystemService, FileSystemService>();
             _container.Singleton<IReferencingService, ReferencingService>();
+            _container.Singleton<IWebService, WebService>();
 
             // Register ViewModels
             _container.Singleton<IShellViewModel, ShellViewModel>();
