@@ -120,6 +120,7 @@
     <Compile Include="Factories\Interfaces\IFileSystemFactory.cs" />
     <Compile Include="Factories\Interfaces\IReferenceFactory.cs" />
     <Compile Include="Factories\ReferenceFactory.cs" />
+    <Compile Include="Helpers\AutoScrollBehavior.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileSystemEntry.cs" />
     <Compile Include="Models\Folder.cs" />
@@ -242,7 +243,6 @@
     <Folder Include="Converters\" />
     <Folder Include="EventArgs\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Helpers\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
