@@ -9,9 +9,16 @@
 			 d:DataContext="{d:DesignInstance ViewModels:ReferenceGeneratorViewModel}">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
-            <Button DockPanel.Dock="Right" Content="Reference" 
-                    Caliburn:Message.Attach="Reference(url)"/>
-            <TextBox x:Name="Url"/>
+            <Button DockPanel.Dock="Right"
+                    ToolTip="Reference"
+                    Caliburn:Message.Attach="Reference(url)">
+                <Image Source="{StaticResource ReferenceAction}"
+                       Height="30"/>
+            </Button>
+
+            <TextBox x:Name="Url"
+                     AcceptsReturn="True"
+                     MinLines="2"/>
         </DockPanel>
         
         <ContentControl Caliburn:View.Model="{Binding ReferencesViewModel, Mode=OneTime}"/>
