@@ -6,5 +6,6 @@
 	<BitmapImage x:Key="File" UriSource="/Images/File.png"/>
 	<BitmapImage x:Key="Folder" UriSource="/Images/Folder.png"/>
 	<BitmapImage x:Key="FolderOpen" UriSource="/Images/Folder Open.png"/>
-	<BitmapImage x:Key="OpenInBrowser" UriSource="/Images/Open in Browser.png"/>
+    <BitmapImage x:Key="OpenInBrowser" UriSource="/Images/Open in Browser.png"/>
+    <BitmapImage x:Key="ReferenceAction" UriSource="/Images/Reference Action.png"/>
 </ResourceDictionary>

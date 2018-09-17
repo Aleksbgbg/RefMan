@@ -265,6 +265,9 @@
   <ItemGroup>
     <Resource Include="Images\Open in Browser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Reference Action.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
