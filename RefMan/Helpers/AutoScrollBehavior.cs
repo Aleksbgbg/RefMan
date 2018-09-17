@@ -1,6 +1,5 @@
 ﻿namespace RefMan.Helpers
 {
-    using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Interactivity;
 
@@ -11,25 +10,20 @@
         protected override void OnAttached()
         {
             AssociatedObject.ScrollChanged += AssociatedObject_ScrollChanged;
-            AssociatedObject.SizeChanged += AssociatedObject_SizeChanged;
         }
 
         protected override void OnDetaching()
         {
             AssociatedObject.ScrollChanged -= AssociatedObject_ScrollChanged;
-            AssociatedObject.SizeChanged -= AssociatedObject_SizeChanged;
-        }
-
-        private void AssociatedObject_SizeChanged(object sender, SizeChangedEventArgs e)
-        {
-            if (!_isUserScrolling)
-            {
-                AssociatedObject.ScrollToEnd();
-            }
         }
 
         private void AssociatedObject_ScrollChanged(object sender, ScrollChangedEventArgs e)
         {
+            if (e.ExtentHeightChange > 0.0 && !_isUserScrolling)
+            {
+                AssociatedObject.ScrollToEnd();
+            }
+
             _isUserScrolling = AssociatedObject.VerticalOffset != AssociatedObject.ScrollableHeight;
         }
     }
