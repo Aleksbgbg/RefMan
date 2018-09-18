@@ -36,9 +36,9 @@
 
                 string yearPublishedString = reference.YearPublished == null ? "n.d." : reference.YearPublished.ToString();
 
-                paragraph.Inlines.Add(new Run(document, $"{reference.WebsiteName}. ({yearPublishedString}) {reference.PageTitle}. [online] Available at: "));
+                paragraph.Inlines.Add(new Run(document, $"{reference.WebsiteName}. ({yearPublishedString}). {reference.PageTitle}. [online] Available at: "));
                 paragraph.Inlines.Add(new Hyperlink(document, reference.Url));
-                paragraph.Inlines.Add(new Run(document, $" [Accessed {reference.AccessDate:dd MMM. yy}]"));
+                paragraph.Inlines.Add(new Run(document, $" [Accessed {reference.AccessDate:dd MMM. yy}]."));
 
                 paragraph.ListFormat.Style = listStyle;
                 paragraph.ParagraphFormat.SpaceAfter = 0.0;

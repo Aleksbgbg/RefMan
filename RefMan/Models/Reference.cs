@@ -149,7 +149,7 @@
                     return $"({WebsiteName}, {yearPublishedString})";
 
                 case "IB": // In-Bibliography
-                    return $"{WebsiteName}. ({yearPublishedString}) {PageTitle}. [online] Available at: {Url} [Accessed {AccessDate:dd MMM. yy}]";
+                    return $"{WebsiteName}. ({yearPublishedString}). {PageTitle}. [online] Available at: {Url} [Accessed {AccessDate:dd MMM. yy}].";
 
                 default:
                     throw new ArgumentOutOfRangeException("Format specifier is unexpected.");
