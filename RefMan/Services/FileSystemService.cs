@@ -77,7 +77,12 @@
 
                                 if (IOFile.Exists(configFile))
                                 {
-                                    return JsonConvert.DeserializeObject<Folder>(IOFile.ReadAllText(configFile));
+                                    Folder folder = JsonConvert.DeserializeObject<Folder>(IOFile.ReadAllText(configFile));
+
+                                    folder.Path = directory;
+                                    folder.Name = directoryName;
+
+                                    return folder;
                                 }
 
                                 return new Folder(directory, directoryName);
