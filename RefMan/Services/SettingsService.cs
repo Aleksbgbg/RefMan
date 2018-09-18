@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.IO;
 
     using RefMan.Services.Interfaces;
 
@@ -14,7 +15,7 @@
             _settings = dataService.Load("Settings",
                                          () => new Dictionary<string, object>
                                          {
-                                             ["RootPath"] = @"E:\Documents\References"
+                                             ["RootPath"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "References")
                                          });
         }
 
