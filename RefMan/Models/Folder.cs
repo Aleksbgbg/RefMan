@@ -4,11 +4,16 @@
 
     internal class Folder : FileSystemEntry
     {
+        [JsonConstructor]
+        public Folder(bool isExpanded)
+        {
+            IsExpanded = isExpanded;
+        }
+
         public Folder(string path, string name) : base(path, name)
         {
         }
 
-        [JsonConstructor]
         public Folder(string path, string name, bool isExpanded) : base(path, name)
         {
             IsExpanded = isExpanded;
