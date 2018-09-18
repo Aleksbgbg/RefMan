@@ -13,18 +13,20 @@
 
     internal class FileSystemService : IFileSystemService
     {
-        private const string Root = @"E:\Documents\References";
-
         private const string RefManExtension = ".ref";
 
-        public FileSystemService()
+        private readonly string _root;
+
+        public FileSystemService(ISettingsService settingsService)
         {
-            Directory.CreateDirectory(Root);
+            _root = settingsService.Get<string>("RootPath");
+
+            Directory.CreateDirectory(_root);
         }
 
         public Folder ReadRootFolder()
         {
-            return new Folder(Root, Path.GetFileName(Root));
+            return new Folder(_root, Path.GetFileName(_root));
         }
 
         public FileSystemEntry[] ReadEntries(Folder folder)
