@@ -126,8 +126,10 @@
     <Compile Include="Models\FileSystemEntry.cs" />
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\Reference.cs" />
+    <Compile Include="Services\AppDataService.cs" />
     <Compile Include="Services\ClipboardService.cs" />
     <Compile Include="Services\FileSystemService.cs" />
+    <Compile Include="Services\Interfaces\IAppDataService.cs" />
     <Compile Include="Services\Interfaces\IClipboardService.cs" />
     <Compile Include="Services\Interfaces\IFileSystemService.cs" />
     <Compile Include="Services\Interfaces\IReferencingService.cs" />

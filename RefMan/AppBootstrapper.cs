@@ -37,6 +37,7 @@
             _container.Singleton<IEventAggregator, EventAggregator>();
             _container.Singleton<IWindowManager, WindowManager>();
 
+            _container.Singleton<IAppDataService, AppDataService>();
             _container.Singleton<IClipboardService, ClipboardService>();
             _container.Singleton<IFileSystemService, FileSystemService>();
             _container.Singleton<IReferencingService, ReferencingService>();
