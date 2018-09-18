@@ -4,16 +4,20 @@
 
     internal abstract class FileSystemEntry
     {
+        public FileSystemEntry()
+        {
+        }
+
         public FileSystemEntry(string path, string name)
         {
             Path = path;
             Name = name;
         }
 
-        [JsonProperty("path")]
-        public string Path { get; }
+        [JsonIgnore]
+        public string Path { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; }
+        [JsonIgnore]
+        public string Name { get; set; }
     }
 }
