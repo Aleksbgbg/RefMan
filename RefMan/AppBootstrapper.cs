@@ -42,6 +42,7 @@
             _container.Singleton<IDataService, DataService>();
             _container.Singleton<IFileSystemService, FileSystemService>();
             _container.Singleton<IReferencingService, ReferencingService>();
+            _container.Singleton<ISettingsService, SettingsService>();
             _container.Singleton<IWebService, WebService>();
 
             // Register ViewModels
