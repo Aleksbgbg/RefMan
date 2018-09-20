@@ -1,6 +1,8 @@
 ﻿namespace RefMan.ViewModels.Interfaces
 {
-    internal interface IShellViewModel : IViewModelBase
+    using Caliburn.Micro;
+
+    internal interface IShellViewModel : IViewModelBase, IConductor
     {
     }
 }
