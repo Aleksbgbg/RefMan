@@ -35,8 +35,11 @@
                 }
             }
 
-            _settings = new Dictionary<string, Setting>(settings.ToDictionary(setting => setting.Name,
-                                                                              setting => setting));
+            foreach (Setting setting in settings)
+            {
+                _settings[setting.Name] = setting;
+                setting.ValueChanged += (sender, e) => SaveSettings();
+            }
         }
 
         public Setting[] Settings => _settings.Values.ToArray();
