@@ -2,36 +2,65 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.IO;
+    using System.Linq;
+    using System.Reflection;
 
+    using Newtonsoft.Json;
+
+    using RefMan.Extensions;
+    using RefMan.Models.Settings;
     using RefMan.Services.Interfaces;
 
     internal class SettingsService : ISettingsService
     {
-        private readonly Dictionary<string, object> _settings;
+        private readonly IDataService _dataService;
+
+        private readonly Dictionary<string, Setting> _settings;
 
         public SettingsService(IDataService dataService)
         {
-            _settings = dataService.Load("Settings",
-                                         () => new Dictionary<string, object>
-                                         {
-                                             ["RootPath"] = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "References")
-                                         });
+            _dataService = dataService;
+
+            Setting[] settings = JsonConvert.DeserializeObject<Setting[]>(Assembly.GetExecutingAssembly()
+                                                                                  .ReadFile("RefMan.Resources.Settings.json"));
+
+            {
+                object[] settingValues = dataService.Load("Settings",
+                                                          () => settings.Select(setting => setting.DefaultValue)
+                                                                        .ToArray());
+
+                for (int settingIndex = 0; settingIndex < settings.Length; ++settingIndex)
+                {
+                    settings[settingIndex].Value = settingValues[settingIndex];
+                }
+            }
+
+            _settings = new Dictionary<string, Setting>(settings.ToDictionary(setting => setting.Name,
+                                                                              setting => setting));
         }
+
+        public Setting[] Settings => _settings.Values.ToArray();
 
         public T Get<T>(string key)
         {
-            return (T)_settings[key];
+            return (T)_settings[key].Value;
         }
 
         public void Set(string key, object value)
         {
             if (!_settings.ContainsKey(key)) // Ensures that no disallowed settings are set
             {
-                throw new ArgumentOutOfRangeException("Invalid setting name.");
+                throw new ArgumentOutOfRangeException(nameof(key), "Invalid setting name.");
             }
 
-            _settings[key] = value;
+            _settings[key].Value = value;
+
+            SaveSettings();
+        }
+
+        private void SaveSettings()
+        {
+            _dataService.Save("Settings", _settings.Values.Select(setting => setting.Value));
         }
     }
 }
