@@ -35,7 +35,7 @@
 
             public override bool CanResetValue(object component)
             {
-                return false;
+                return true;
             }
 
             public override object GetValue(object component)
@@ -45,7 +45,7 @@
 
             public override void ResetValue(object component)
             {
-                throw new NotSupportedException("Cannot reset value.");
+                _setting.ResetValue();
             }
 
             public override void SetValue(object component, object value)
