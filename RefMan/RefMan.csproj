@@ -117,6 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
+    <Page Include="Views\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -163,9 +167,11 @@
     <Compile Include="ViewModels\Interfaces\IReferenceGeneratorViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IReferencesViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IReferenceViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\ISettingsViewModel.cs" />
     <Compile Include="ViewModels\ReferenceGeneratorViewModel.cs" />
     <Compile Include="ViewModels\ReferencesViewModel.cs" />
     <Compile Include="ViewModels\ReferenceViewModel.cs" />
+    <Compile Include="ViewModels\SettingsViewModel.cs" />
     <Compile Include="Views\FileSystemView.xaml.cs">
       <DependentUpon>FileSystemView.xaml</DependentUpon>
     </Compile>
@@ -188,6 +194,9 @@
     <Compile Include="Views\ReferenceView.xaml.cs">
       <DependentUpon>ReferenceView.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>

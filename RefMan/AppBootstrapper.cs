@@ -49,6 +49,8 @@
             _container.Singleton<IShellViewModel, ShellViewModel>();
             _container.Singleton<IMainViewModel, MainViewModel>();
 
+            _container.Singleton<ISettingsViewModel, SettingsViewModel>();
+
             _container.Singleton<IFileSystemViewModel, FileSystemViewModel>();
 
             _container.PerRequest<IFolderViewModel, FolderViewModel>();
