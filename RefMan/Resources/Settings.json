@@ -1,1 +1,1 @@
-﻿[{"Name":"References Path","Description":"A file system path to the root references directory."}]
+﻿[{"Name":"References Path","Description":"A file system path to the root references directory.","DefaultValue":"C:\\Documents\\References"}]

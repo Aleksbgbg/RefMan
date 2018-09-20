@@ -5,13 +5,14 @@
     internal class Setting
     {
         [JsonConstructor]
-        public Setting(string name, string description)
+        public Setting(string name, string description, object defaultValue)
         {
             Name = name;
             Description = description;
+            DefaultValue = defaultValue;
         }
 
-        public Setting(string name, string description, object value) : this(name, description)
+        public Setting(string name, string description, object defaultValue, object value) : this(name, description, defaultValue)
         {
             Value = value;
         }
@@ -19,6 +20,8 @@
         public string Name { get; }
 
         public string Description { get; }
+
+        public object DefaultValue { get; }
 
         public object Value { get; set; }
     }
