@@ -15,7 +15,7 @@
     {
         private readonly IDataService _dataService;
 
-        private readonly Dictionary<string, Setting> _settings;
+        private readonly Dictionary<string, Setting> _settings = new Dictionary<string, Setting>();
 
         public SettingsService(IDataService dataService)
         {
