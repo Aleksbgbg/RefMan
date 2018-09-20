@@ -55,20 +55,12 @@
                             <Setter Property="Content">
                                 <Setter.Value>
                                     <xctk:PropertyGrid SelectedObject="{Binding Reference, Mode=OneTime}"
-                                                       AutoGenerateProperties="False"
                                                        ShowDescriptionByTooltip="True"
+                                                       HideInheritedProperties="True"
                                                        ShowSearchBox="False"
                                                        ShowSortOptions="False"
                                                        ShowSummary="False"
-                                                       ShowTitle="False">
-                                        <xctk:PropertyGrid.PropertyDefinitions>
-                                            <xctk:PropertyDefinition TargetProperties="Url"/>
-                                            <xctk:PropertyDefinition TargetProperties="PageTitle"/>
-                                            <xctk:PropertyDefinition TargetProperties="WebsiteName"/>
-                                            <xctk:PropertyDefinition TargetProperties="AccessDate"/>
-                                            <xctk:PropertyDefinition TargetProperties="YearPublished"/>
-                                        </xctk:PropertyGrid.PropertyDefinitions>
-                                    </xctk:PropertyGrid>
+                                                       ShowTitle="False"/>
                                 </Setter.Value>
                             </Setter>
                         </DataTrigger>
