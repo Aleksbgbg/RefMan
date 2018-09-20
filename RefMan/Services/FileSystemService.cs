@@ -19,7 +19,7 @@
 
         public FileSystemService(ISettingsService settingsService)
         {
-            _root = settingsService.Get<string>("RootPath");
+            _root = settingsService.Get<string>("References Path");
 
             Directory.CreateDirectory(_root);
         }
