@@ -23,6 +23,7 @@
 
         public T Load<T>(string dataName, Func<T> emptyData)
         {
+            // Consider catching DeserializationException and write empty data
             return JsonConvert.DeserializeObject<T>(File.ReadAllText(_appDataService.GetFile($"Data/{dataName}.json", () => JsonConvert.SerializeObject(emptyData()))));
         }
 
