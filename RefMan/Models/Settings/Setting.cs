@@ -41,5 +41,10 @@
                 ValueChanged?.Invoke(this, EventArgs.Empty);
             }
         }
+
+        public void ResetValue()
+        {
+            Value = DefaultValue;
+        }
     }
 }
