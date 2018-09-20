@@ -141,6 +141,8 @@
     <Compile Include="Services\ReferencingService.cs" />
     <Compile Include="Services\SettingsService.cs" />
     <Compile Include="Services\WebService.cs" />
+    <Compile Include="Utilities\PropertyGrid\SettingsTypeDescriptor.cs" />
+    <Compile Include="Utilities\PropertyGrid\SettingsTypeDescriptor.SettingPropertyDescriptor.cs" />
     <Compile Include="ViewModels\FileSystemViewModel.cs" />
     <Compile Include="ViewModels\FileViewModel.cs" />
     <Compile Include="ViewModels\FolderViewModel.cs" />
@@ -251,7 +253,6 @@
     <Folder Include="Converters\" />
     <Folder Include="EventArgs\" />
     <Folder Include="Extensions\" />
-    <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
