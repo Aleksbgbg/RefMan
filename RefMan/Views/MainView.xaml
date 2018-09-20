@@ -9,12 +9,15 @@
 			 d:DataContext="{d:DesignInstance ViewModels:MainViewModel}">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition MinWidth="200"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="2*" MinWidth="400"/>
         </Grid.ColumnDefinitions>
 
         <ContentControl Caliburn:View.Model="{Binding FileSystemViewModel, Mode=OneTime}"/>
 
-        <ContentControl Grid.Column="1" Caliburn:View.Model="{Binding ReferenceGeneratorViewModel}"/>
+        <GridSplitter Grid.Column="1" Background="DodgerBlue" HorizontalAlignment="Stretch" Width="5"/>
+
+        <ContentControl Grid.Column="2" Caliburn:View.Model="{Binding ReferenceGeneratorViewModel}"/>
     </Grid>
 </UserControl>
