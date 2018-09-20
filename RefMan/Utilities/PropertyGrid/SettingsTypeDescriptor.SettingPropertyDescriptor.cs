@@ -5,14 +5,21 @@
 
     using RefMan.Models.Settings;
 
+    using Xceed.Wpf.Toolkit.PropertyGrid.Editors;
+
     internal partial class SettingsTypeDescriptor
     {
-        private class SettingPropertyDescriptor : PropertyDescriptor
+        private sealed class SettingPropertyDescriptor : PropertyDescriptor
         {
             private readonly Setting _setting;
 
             public SettingPropertyDescriptor(Setting setting) : base(setting.Name, null)
             {
+                if (setting.Editor != null)
+                {
+                    AttributeArray = new Attribute[] { new EditorAttribute(setting.Editor, typeof(ITypeEditor)) };
+                }
+
                 _setting = setting;
             }
 
