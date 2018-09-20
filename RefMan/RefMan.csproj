@@ -117,6 +117,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Constants.cs" />
+    <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Factories\FileSystemFactory.cs" />
     <Compile Include="Factories\Interfaces\IFileSystemFactory.cs" />
     <Compile Include="Factories\Interfaces\IReferenceFactory.cs" />
@@ -252,7 +253,6 @@
   <ItemGroup>
     <Folder Include="Converters\" />
     <Folder Include="EventArgs\" />
-    <Folder Include="Extensions\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="FodyWeavers.xml" />
