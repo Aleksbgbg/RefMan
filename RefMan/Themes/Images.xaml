@@ -2,10 +2,11 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 	<BitmapImage x:Key="Clipboard" UriSource="/Images/Clipboard.png"/>
 	<BitmapImage x:Key="Delete" UriSource="/Images/Delete.png"/>
+	<BitmapImage x:Key="DropDownArrow" UriSource="/Images/Drop Down Arrow.png"/>
 	<BitmapImage x:Key="Edit" UriSource="/Images/Edit.png"/>
 	<BitmapImage x:Key="File" UriSource="/Images/File.png"/>
 	<BitmapImage x:Key="Folder" UriSource="/Images/Folder.png"/>
 	<BitmapImage x:Key="FolderOpen" UriSource="/Images/Folder Open.png"/>
-    <BitmapImage x:Key="OpenInBrowser" UriSource="/Images/Open in Browser.png"/>
-    <BitmapImage x:Key="ReferenceAction" UriSource="/Images/Reference Action.png"/>
+	<BitmapImage x:Key="OpenInBrowser" UriSource="/Images/Open in Browser.png"/>
+	<BitmapImage x:Key="ReferenceAction" UriSource="/Images/Reference Action.png"/>
 </ResourceDictionary>

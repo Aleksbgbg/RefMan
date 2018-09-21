@@ -304,6 +304,9 @@
   <ItemGroup>
     <Resource Include="Images\Reference Action.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Drop Down Arrow.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
