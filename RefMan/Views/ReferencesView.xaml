@@ -23,6 +23,14 @@
                        FontSize="16" FontWeight="DemiBold"/>
         </StackPanel>
 
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock>
+                    References: <Run Text="{Binding References.Count, Mode=OneWay}"/>
+                </TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+
         <ScrollViewer VerticalScrollBarVisibility="Auto">
             <i:Interaction.Behaviors>
                 <Helpers:AutoScrollBehavior/>
