@@ -4,23 +4,32 @@
 			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:Caliburn="http://www.caliburnproject.org"
-			 xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
-			 mc:Ignorable="d"
+             xmlns:Controls="clr-namespace:RefMan.Controls"
+             xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
+             mc:Ignorable="d"
 			 d:DataContext="{d:DesignInstance ViewModels:ReferenceGeneratorViewModel}">
     <DockPanel>
         <DockPanel DockPanel.Dock="Top">
             <Button DockPanel.Dock="Right"
                     ToolTip="Reference"
-                    Caliburn:Message.Attach="Reference(url)">
+                    VerticalAlignment="Top"
+                    Margin="5, 0"
+                    Caliburn:Message.Attach="Reference(urls)">
                 <Image Source="{StaticResource ReferenceAction}"
                        Height="30"/>
             </Button>
 
-            <TextBox x:Name="Url"
-                     AcceptsReturn="True"
-                     MinLines="2"/>
+            <Controls:ExpandableTextBox x:Name="Urls"
+                                        AcceptsReturn="True"
+                                        BorderThickness="0.5"
+                                        BorderBrush="Silver"
+                                        MinLines="2"
+                                        CollapsedHeight="35"
+                                        ExpandedHeight="160"
+                                        ToggleExpansionImage="{StaticResource DropDownArrow}"
+                                        VerticalScrollBarVisibility="Auto"/>
         </DockPanel>
-        
+
         <ContentControl Caliburn:View.Model="{Binding ReferencesViewModel, Mode=OneTime}"/>
     </DockPanel>
 </UserControl>

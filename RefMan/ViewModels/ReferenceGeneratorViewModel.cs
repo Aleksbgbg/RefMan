@@ -20,13 +20,16 @@
 
         public IReferencesViewModel ReferencesViewModel { get; }
 
-        public IEnumerable<IResult> Reference(string url)
+        public IEnumerable<IResult> Reference(string urls)
         {
-            TaskResult<Reference> referenceTask = _referencingService.Reference(url).AsResult();
+            foreach (string url in urls.Split('\n'))
+            {
+                TaskResult<Reference> referenceTask = _referencingService.Reference(url).AsResult();
 
-            yield return referenceTask;
+                yield return referenceTask;
 
-            ReferencesViewModel.Add(referenceTask.Result);
+                ReferencesViewModel.Add(referenceTask.Result);
+            }
         }
     }
 }
