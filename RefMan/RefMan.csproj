@@ -85,9 +85,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Controls\ExpandableTextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\PathEditor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Generic.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\FileSystemView.xaml">
       <SubType>Designer</SubType>
@@ -126,6 +134,7 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="Constants.cs" />
+    <Compile Include="Controls\ExpandableTextBox.cs" />
     <Compile Include="Controls\PathEditor.xaml.cs">
       <DependentUpon>PathEditor.xaml</DependentUpon>
     </Compile>
