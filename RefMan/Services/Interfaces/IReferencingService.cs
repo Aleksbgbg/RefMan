@@ -8,6 +8,8 @@
     {
         Task<Reference> Reference(string url);
 
+        Task CompleteReference(Reference reference);
+
         Task ReloadReference(Reference reference);
     }
 }
