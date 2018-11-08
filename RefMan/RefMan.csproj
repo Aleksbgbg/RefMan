@@ -151,6 +151,7 @@
     <Compile Include="Models\FileSystemEntry.cs" />
     <Compile Include="Models\Folder.cs" />
     <Compile Include="Models\Reference.cs" />
+    <Compile Include="Models\ReferenceResult.cs" />
     <Compile Include="Models\Settings\Setting.cs" />
     <Compile Include="Services\AppDataService.cs" />
     <Compile Include="Services\ClipboardService.cs" />
