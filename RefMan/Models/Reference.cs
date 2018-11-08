@@ -13,6 +13,11 @@
         {
         }
 
+        public Reference(string url)
+        {
+            Url = url;
+        }
+
         public Reference(string url, string imageUrl, string pageTitle, string websiteName, DateTime accessDate)
             : this(url, imageUrl, pageTitle, websiteName, accessDate, null)
         {
