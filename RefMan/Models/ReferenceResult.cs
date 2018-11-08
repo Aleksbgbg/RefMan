@@ -4,7 +4,7 @@
 
     internal class ReferenceResult : PropertyChangedBase
     {
-        public ReferenceResult(Reference reference, bool isComplete = true)
+        public ReferenceResult(Reference reference, bool isComplete = false)
         {
             Reference = reference;
             _isComplete = isComplete;
