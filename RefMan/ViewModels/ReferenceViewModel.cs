@@ -1,5 +1,7 @@
 ﻿namespace RefMan.ViewModels
 {
+    using System.Threading.Tasks;
+
     using Caliburn.Micro;
 
     using RefMan.Models;
@@ -52,13 +54,23 @@
             Reference = reference;
             _referenceFile = referenceFile;
 
-            Reference.PropertyChanged += (sender, e) =>
+            UpdateReferenceOnUrlChanges();
+        }
+
+        public async Task Initialize(ReferenceResult referenceResult, File referenceFile)
+        {
+            Reference = referenceResult.Reference;
+            _referenceFile = referenceFile;
+
+            if (!referenceResult.IsComplete)
             {
-                if (e.PropertyName == nameof(Reference.Url))
-                {
-                    _referencingService.ReloadReference(Reference);
-                }
-            };
+                await _referencingService.CompleteReference(referenceResult.Reference);
+
+                _referenceFile.References.Add(referenceResult.Reference);
+                _fileSystemService.SaveFile(_referenceFile);
+            }
+
+            UpdateReferenceOnUrlChanges();
         }
 
         public void Delete()
@@ -69,6 +81,17 @@
         public void OpenInBrowser()
         {
             _webService.OpenInBrowser(Reference.Url);
+        }
+
+        private void UpdateReferenceOnUrlChanges()
+        {
+            Reference.PropertyChanged += (sender, e) =>
+            {
+                if (e.PropertyName == nameof(Reference.Url))
+                {
+                    _referencingService.ReloadReference(Reference);
+                }
+            };
         }
     }
 }
