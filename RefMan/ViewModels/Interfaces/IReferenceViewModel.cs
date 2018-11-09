@@ -6,7 +6,7 @@
 
     internal interface IReferenceViewModel : IViewModelBase
     {
-        Reference Reference { get; }
+        ReferenceResult ReferenceResult { get; }
 
         void Initialize(Reference reference, File referenceFile);
 

@@ -28,7 +28,7 @@
             _webService = webService;
         }
 
-        public Reference Reference { get; private set; }
+        public ReferenceResult ReferenceResult { get; private set; }
 
         private bool _isEditing;
         public bool IsEditing
@@ -51,7 +51,7 @@
 
         public void Initialize(Reference reference, File referenceFile)
         {
-            Reference = reference;
+            ReferenceResult = new ReferenceResult(reference, isComplete: true);
             _referenceFile = referenceFile;
 
             UpdateReferenceOnUrlChanges();
@@ -59,14 +59,16 @@
 
         public async Task Initialize(ReferenceResult referenceResult, File referenceFile)
         {
-            Reference = referenceResult.Reference;
+            ReferenceResult = referenceResult;
             _referenceFile = referenceFile;
 
             if (!referenceResult.IsComplete)
             {
-                await _referencingService.CompleteReference(referenceResult.Reference);
-
                 _referenceFile.References.Add(referenceResult.Reference);
+
+                await _referencingService.CompleteReference(referenceResult.Reference);
+                referenceResult.IsComplete = true;
+
                 _fileSystemService.SaveFile(_referenceFile);
             }
 
@@ -80,16 +82,16 @@
 
         public void OpenInBrowser()
         {
-            _webService.OpenInBrowser(Reference.Url);
+            _webService.OpenInBrowser(ReferenceResult.Reference.Url);
         }
 
         private void UpdateReferenceOnUrlChanges()
         {
-            Reference.PropertyChanged += (sender, e) =>
+            ReferenceResult.Reference.PropertyChanged += (sender, e) =>
             {
                 if (e.PropertyName == nameof(Reference.Url))
                 {
-                    _referencingService.ReloadReference(Reference);
+                    _referencingService.ReloadReference(ReferenceResult.Reference);
                 }
             };
         }
