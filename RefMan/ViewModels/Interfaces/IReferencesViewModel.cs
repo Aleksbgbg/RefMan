@@ -1,9 +1,11 @@
 ﻿namespace RefMan.ViewModels.Interfaces
 {
+    using System.Threading.Tasks;
+
     using RefMan.Models;
 
     internal interface IReferencesViewModel : IViewModelBase
     {
-        void Add(Reference reference);
+        Task Add(ReferenceResult referenceResult);
     }
 }

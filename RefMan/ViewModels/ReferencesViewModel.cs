@@ -2,6 +2,7 @@
 {
     using System.Collections.Generic;
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Caliburn.Micro;
 
@@ -66,16 +67,17 @@
         {
             References.Remove(message);
 
-            LoadedFile.References.Remove(message.Reference);
+            LoadedFile.References.Remove(message.ReferenceResult.Reference);
             _fileSystemService.SaveFile(LoadedFile);
         }
 
-        public void Add(Reference reference)
+        public async Task Add(ReferenceResult referenceResult)
         {
-            LoadedFile.References.Add(reference);
-            _fileSystemService.SaveFile(LoadedFile);
+            IReferenceViewModel referenceViewModel = _referenceFactory.MakeReference();
 
-            References.Add(_referenceFactory.MakeReference(reference, LoadedFile));
+            References.Add(referenceViewModel);
+
+            await referenceViewModel.Initialize(referenceResult, LoadedFile);
         }
 
         public IEnumerable<IResult> CopyReferencesToClipboard()
