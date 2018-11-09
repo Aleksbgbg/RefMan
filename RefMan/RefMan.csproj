@@ -141,6 +141,7 @@
     <Compile Include="Controls\PathEditor.xaml.cs">
       <DependentUpon>PathEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Factories\FileSystemFactory.cs" />
     <Compile Include="Factories\Interfaces\IFileSystemFactory.cs" />
@@ -282,7 +283,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Converters\" />
     <Folder Include="EventArgs\" />
   </ItemGroup>
   <ItemGroup>
