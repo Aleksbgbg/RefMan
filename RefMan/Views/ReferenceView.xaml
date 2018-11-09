@@ -10,6 +10,9 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance ViewModels:ReferenceViewModel}">
+    <!-- A grid with dual content with mutually exclusive visibilities is used, to
+         circumvent a framework bug where ContentControl with DataTrigger and
+         Content setter will prevent Binding from updating -->
     <Grid>
         <Grid Visibility="{Binding ReferenceResult.IsComplete, Mode=OneWay,
             Converter={x:Static Converters:BooleanToVisibilityConverter.VisibleWhenTrue}}"
