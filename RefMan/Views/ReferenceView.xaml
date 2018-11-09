@@ -95,6 +95,16 @@
 
         <LoadingIndicators:LoadingIndicator Visibility="{Binding ReferenceResult.IsComplete, Mode=OneWay,
             Converter={x:Static Converters:BooleanToVisibilityConverter.VisibleWhenFalse}}"
-                                            Style="{StaticResource LoadingIndicatorRingStyleKey}"/>
+                                            Foreground="DeepSkyBlue">
+            <LoadingIndicators:LoadingIndicator.Style>
+                <Style TargetType="LoadingIndicators:LoadingIndicator" BasedOn="{StaticResource LoadingIndicatorRingStyleKey}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ReferenceResult.IsComplete}" Value="True">
+                            <Setter Property="IsActive" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </LoadingIndicators:LoadingIndicator.Style>
+        </LoadingIndicators:LoadingIndicator>
     </Grid>
 </UserControl>
