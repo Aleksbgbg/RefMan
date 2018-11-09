@@ -23,6 +23,7 @@
 
                 _isComplete = value;
                 NotifyOfPropertyChange(() => IsComplete);
+                NotifyOfPropertyChange(() => Reference);
             }
         }
     }
