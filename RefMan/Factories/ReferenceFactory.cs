@@ -8,6 +8,12 @@
 
     internal class ReferenceFactory : IReferenceFactory
     {
+        public IReferenceViewModel MakeReference()
+        {
+            IReferenceViewModel referenceViewModel = IoC.Get<IReferenceViewModel>();
+            return referenceViewModel;
+        }
+
         public IReferenceViewModel MakeReference(Reference reference, File referenceFile)
         {
             IReferenceViewModel referenceViewModel = IoC.Get<IReferenceViewModel>();
