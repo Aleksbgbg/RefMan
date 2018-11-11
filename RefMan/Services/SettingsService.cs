@@ -42,6 +42,8 @@
             }
         }
 
+        public Setting this[string key] => _settings[key];
+
         public Setting[] Settings => _settings.Values.ToArray();
 
         public T Get<T>(string key)
