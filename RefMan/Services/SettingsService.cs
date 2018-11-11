@@ -59,8 +59,6 @@
             }
 
             _settings[key].Value = value;
-
-            SaveSettings();
         }
 
         private void SaveSettings()
