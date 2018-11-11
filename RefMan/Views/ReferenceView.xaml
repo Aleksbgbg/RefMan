@@ -29,7 +29,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="2" HorizontalAlignment="Center">
+            <StackPanel Grid.ColumnSpan="3" HorizontalAlignment="Center">
                 <Image Source="{Binding ReferenceResult.Reference.ImageUrl}"
                        Height="25" Width="25"
                        VerticalAlignment="Center" Margin="2.5, 0"/>
