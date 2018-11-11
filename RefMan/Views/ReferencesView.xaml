@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              xmlns:Caliburn="http://www.caliburnproject.org"
+             xmlns:Converters="clr-namespace:RefMan.Converters"
              xmlns:Helpers="clr-namespace:RefMan.Helpers"
              xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
              mc:Ignorable="d"
@@ -36,7 +37,29 @@
                 <Helpers:AutoScrollBehavior/>
             </i:Interaction.Behaviors>
 
-            <ItemsControl x:Name="References"/>
+            <ItemsControl ItemsSource="{Binding References, Mode=OneTime}"
+                          AlternationCount="{Binding Items.Count, RelativeSource={RelativeSource Self}}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel>
+                            <Separator x:Name="Separator" Margin="5"/>
+
+                            <ContentControl Caliburn:View.Model="{Binding Mode=OneTime}"/>
+
+                            <TextBlock FontWeight="DemiBold" HorizontalAlignment="Center"
+                                       Text="{Binding Path=(ItemsControl.AlternationIndex), Mode=OneWay,
+                                    RelativeSource={RelativeSource FindAncestor, AncestorType=ContentPresenter},
+                                    Converter={x:Static Converters:AddOneConverter.Default}}"/>
+                        </StackPanel>
+
+                        <DataTemplate.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Visibility" TargetName="Separator" Value="Collapsed"/>
+                            </Trigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
     </DockPanel>
 </UserControl>
