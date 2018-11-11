@@ -141,6 +141,7 @@
     <Compile Include="Controls\PathEditor.xaml.cs">
       <DependentUpon>PathEditor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\AddOneConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
     <Compile Include="Factories\FileSystemFactory.cs" />
