@@ -7,7 +7,7 @@
              xmlns:ViewModels="clr-namespace:RefMan.ViewModels"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance ViewModels:FileSystemViewModel}">
-    <TreeView BorderThickness="0" ItemsSource="{Binding RootFolderArray, Mode=OneTime}">
+    <TreeView BorderThickness="0" ItemsSource="{Binding RootFolderCollection, Mode=OneTime}">
         <TreeView.Resources>
             <HierarchicalDataTemplate DataType="{x:Type ViewModels:FolderViewModel}"
                                       ItemsSource="{Binding FileSystemEntries, Mode=OneTime}">

@@ -1,20 +1,37 @@
 ﻿namespace RefMan.ViewModels
 {
+    using Caliburn.Micro;
+
     using RefMan.Factories.Interfaces;
     using RefMan.Services.Interfaces;
     using RefMan.ViewModels.Interfaces;
 
     internal class FileSystemViewModel : ViewModelBase, IFileSystemViewModel
     {
-        public FileSystemViewModel(IFileSystemFactory fileSystemFactory, IFileSystemService fileSystemService)
+        private readonly IFileSystemFactory _fileSystemFactory;
+
+        private readonly IFileSystemService _fileSystemService;
+
+        public FileSystemViewModel(IFileSystemFactory fileSystemFactory, IFileSystemService fileSystemService, ISettingsService settingsService)
         {
-            IFolderViewModel rootFolder = fileSystemFactory.MakeFolder(fileSystemService.ReadRootFolder());
+            _fileSystemFactory = fileSystemFactory;
+            _fileSystemService = fileSystemService;
 
-            RootFolderArray = new[] { rootFolder };
+            PopulateRoot();
 
-            rootFolder.IsExpanded = true;
+            settingsService["References Path"].ValueChanged += (sender, e) => PopulateRoot();
         }
 
-        public IFolderViewModel[] RootFolderArray { get; }
+        public IObservableCollection<IFolderViewModel> RootFolderCollection { get; } = new BindableCollection<IFolderViewModel>();
+
+        private void PopulateRoot()
+        {
+            IFolderViewModel rootFolder = _fileSystemFactory.MakeFolder(_fileSystemService.ReadRootFolder());
+
+            rootFolder.IsExpanded = true;
+
+            RootFolderCollection.Clear();
+            RootFolderCollection.Add(rootFolder);
+        }
     }
 }
