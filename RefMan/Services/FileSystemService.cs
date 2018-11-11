@@ -15,18 +15,21 @@
     {
         private const string RefManExtension = ".ref";
 
-        private readonly string _root;
+        private readonly ISettingsService _settingsService;
 
         public FileSystemService(ISettingsService settingsService)
         {
-            _root = settingsService.Get<string>("References Path");
+            _settingsService = settingsService;
 
-            Directory.CreateDirectory(_root);
+            Directory.CreateDirectory(Root);
         }
+
+        private string Root => _settingsService.Get<string>("References Path");
 
         public Folder ReadRootFolder()
         {
-            return new Folder(_root, Path.GetFileName(_root));
+            string rootFolder = Root;
+            return new Folder(rootFolder, Path.GetFileName(rootFolder));
         }
 
         public FileSystemEntry[] ReadEntries(Folder folder)
