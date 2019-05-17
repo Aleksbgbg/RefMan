@@ -1,0 +1,1 @@
+﻿[{"Name":"References Path","Description":"A file system path to the root references directory.","DefaultValue":"C:\\Documents\\References","Editor":"Refman.Controls.PathEditor, Refman, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null"}]
