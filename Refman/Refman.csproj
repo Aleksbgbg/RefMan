@@ -76,6 +76,9 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System.Xaml" />
+    <Reference Include="Wingman, Version=1.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Wingman.1.0.3\lib\net48\Wingman.dll</HintPath>
+    </Reference>
     <Reference Include="Xceed.Wpf.Toolkit, Version=3.4.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <HintPath>..\packages\Extended.Wpf.Toolkit.3.4.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
     </Reference>
@@ -145,10 +148,6 @@
     <Compile Include="Converters\AddOneConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Extensions\AssemblyExtensions.cs" />
-    <Compile Include="Factories\FileSystemFactory.cs" />
-    <Compile Include="Factories\Interfaces\IFileSystemFactory.cs" />
-    <Compile Include="Factories\Interfaces\IReferenceFactory.cs" />
-    <Compile Include="Factories\ReferenceFactory.cs" />
     <Compile Include="Helpers\AutoScrollBehavior.cs" />
     <Compile Include="Models\File.cs" />
     <Compile Include="Models\FileSystemEntry.cs" />
