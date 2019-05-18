@@ -6,22 +6,23 @@
 
     using Caliburn.Micro;
 
-    using Refman.Factories.Interfaces;
     using Refman.Models;
     using Refman.Services.Interfaces;
     using Refman.ViewModels.Interfaces;
 
+    using Wingman.ServiceFactory;
+
     internal class ReferencesViewModel : ViewModelBase, IReferencesViewModel, IHandle<File>, IHandle<IReferenceViewModel>
     {
-        private readonly IReferenceFactory _referenceFactory;
+        private readonly IServiceFactory _serviceFactory;
 
         private readonly IClipboardService _clipboardService;
 
         private readonly IFileSystemService _fileSystemService;
 
-        public ReferencesViewModel(IReferenceFactory referenceFactory, IEventAggregator eventAggregator, IClipboardService clipboardService, IFileSystemService fileSystemService)
+        public ReferencesViewModel(IServiceFactory serviceFactory, IEventAggregator eventAggregator, IClipboardService clipboardService, IFileSystemService fileSystemService)
         {
-            _referenceFactory = referenceFactory;
+            _serviceFactory = serviceFactory;
             _clipboardService = clipboardService;
             _fileSystemService = fileSystemService;
 
@@ -60,7 +61,7 @@
                 _fileSystemService.LoadReferences(message);
             }
 
-            References.AddRange(message.References.Select(reference => _referenceFactory.MakeReference(reference, LoadedFile)));
+            References.AddRange(message.References.Select(reference => _serviceFactory.Make<IReferenceViewModel>(reference, LoadedFile)));
         }
 
         public void Handle(IReferenceViewModel message)
@@ -71,13 +72,11 @@
             _fileSystemService.SaveFile(LoadedFile);
         }
 
-        public async Task Add(ReferenceResult referenceResult)
+        public void Add(ReferenceResult referenceResult)
         {
-            IReferenceViewModel referenceViewModel = _referenceFactory.MakeReference();
+            IReferenceViewModel referenceViewModel = _serviceFactory.Make<IReferenceViewModel>(referenceResult, LoadedFile);
 
             References.Add(referenceViewModel);
-
-            await referenceViewModel.Initialize(referenceResult, LoadedFile);
         }
 
         public IEnumerable<IResult> CopyReferencesToClipboard()

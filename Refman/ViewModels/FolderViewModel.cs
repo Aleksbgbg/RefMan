@@ -1,32 +1,37 @@
 ﻿namespace Refman.ViewModels
 {
-    using System;
+    using System.Collections.Generic;
     using System.Linq;
 
     using Caliburn.Micro;
 
-    using Refman.Factories.Interfaces;
     using Refman.Models;
     using Refman.Services.Interfaces;
     using Refman.ViewModels.Interfaces;
 
+    using Wingman.ServiceFactory;
+
     internal class FolderViewModel : FileSystemEntryViewModel<Folder>, IFolderViewModel
     {
-        private readonly IFileSystemFactory _fileSystemFactory;
+        private readonly IServiceFactory _serviceFactory;
 
         private readonly IFileSystemService _fileSystemService;
 
-        private bool _canExpand;
+        private readonly bool _canExpand;
 
-        public FolderViewModel(IFileSystemFactory fileSystemFactory, IFileSystemService fileSystemService)
+        public FolderViewModel(IServiceFactory serviceFactory, IFileSystemService fileSystemService, Folder folder) : base(folder)
         {
-            _fileSystemFactory = fileSystemFactory;
+            _serviceFactory = serviceFactory;
             _fileSystemService = fileSystemService;
+
+            _canExpand = _fileSystemService.CanExpand(folder);
+            IsExpanded = folder.IsExpanded;
+            AddDummyFolder();
         }
 
         public IObservableCollection<IFileSystemEntryViewModel<FileSystemEntry>> FileSystemEntries { get; } = new BindableCollection<IFileSystemEntryViewModel<FileSystemEntry>>();
 
-        public override bool IsExpanded
+        public sealed override bool IsExpanded
         {
             get => base.IsExpanded;
 
@@ -46,21 +51,8 @@
 
                 if (base.IsExpanded)
                 {
-                    FileSystemEntries.AddRange(_fileSystemService.ReadEntries(FileSystemEntry)
-                                                                 .Select<FileSystemEntry, IFileSystemEntryViewModel<FileSystemEntry>>(entry =>
-                                                                 {
-                                                                     switch (entry)
-                                                                     {
-                                                                         case File file:
-                                                                             return _fileSystemFactory.MakeFile(file);
-
-                                                                         case Folder folder:
-                                                                             return _fileSystemFactory.MakeFolder(folder);
-
-                                                                         default:
-                                                                             throw new ArgumentException("Invalid FileSystemEntry type.");
-                                                                     }
-                                                                 }));
+                    PopulateFoldersInDirectory();
+                    PopulateFilesInDirectory();
                 }
                 else
                 {
@@ -69,21 +61,27 @@
             }
         }
 
-        public void Initialize(Folder folder)
-        {
-            FileSystemEntry = folder;
-
-            _canExpand = _fileSystemService.CanExpand(folder);
-            IsExpanded = folder.IsExpanded;
-            AddDummyFolder();
-        }
-
         private void AddDummyFolder()
         {
             if (_canExpand && FileSystemEntries.Count == 0)
             {
                 FileSystemEntries.Add(null);
             }
+        }
+
+        private void PopulateFoldersInDirectory()
+        {
+            PopulateEntries<IFolderViewModel>(_fileSystemService.ReadFolders(FileSystemEntry));
+        }
+
+        private void PopulateFilesInDirectory()
+        {
+            PopulateEntries<IFileViewModel>(_fileSystemService.ReadFiles(FileSystemEntry));
+        }
+
+        private void PopulateEntries<TViewModel>(IEnumerable<FileSystemEntry> entries) where TViewModel : IFileSystemEntryViewModel<FileSystemEntry>
+        {
+            FileSystemEntries.AddRange((IEnumerable<IFileSystemEntryViewModel<FileSystemEntry>>)entries.Select(entry => _serviceFactory.Make<TViewModel>(entry)));
         }
     }
 }

@@ -37,6 +37,16 @@
             return ReadEntries(folder.Path);
         }
 
+        public Folder[] ReadFolders(Folder folder)
+        {
+            return ReadFolders(folder.Path);
+        }
+
+        public File[] ReadFiles(Folder folder)
+        {
+            return ReadFiles(folder.Path);
+        }
+
         public bool CanExpand(Folder folder)
         {
             return Directory.EnumerateFileSystemEntries(folder.Path).Any();
@@ -73,28 +83,39 @@
 
         private static FileSystemEntry[] ReadEntries(string path)
         {
+            return ReadFolders(path).Concat<FileSystemEntry>(ReadFiles(path))
+                                    .ToArray();
+        }
+
+        private static Folder[] ReadFolders(string path)
+        {
             return Directory.GetDirectories(path)
                             .Select(directory =>
                             {
                                 string configFile = Path.Combine(directory, "Config.json");
-
+                            
                                 string directoryName = Path.GetFileName(directory);
-
+                            
                                 if (IOFile.Exists(configFile))
                                 {
                                     Folder folder = JsonConvert.DeserializeObject<Folder>(IOFile.ReadAllText(configFile));
-
+                            
                                     folder.Path = directory;
                                     folder.Name = directoryName;
-
+                            
                                     return folder;
                                 }
-
+                            
                                 return new Folder(directory, directoryName);
                             })
-                            .Concat<FileSystemEntry>(Directory.GetFiles(path)
-                                                              .Where(file => Path.GetExtension(file) == RefManExtension)
-                                                              .Select(file => new File(file, Path.GetFileNameWithoutExtension(file))))
+                            .ToArray();
+        }
+
+        private static File[] ReadFiles(string path)
+        {
+            return Directory.GetFiles(path)
+                            .Where(file => Path.GetExtension(file) == RefManExtension)
+                            .Select(file => new File(file, Path.GetFileNameWithoutExtension(file)))
                             .ToArray();
         }
     }

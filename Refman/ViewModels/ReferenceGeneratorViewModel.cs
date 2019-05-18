@@ -1,9 +1,5 @@
 ﻿namespace Refman.ViewModels
 {
-    using System.Collections.Generic;
-
-    using Caliburn.Micro;
-
     using Refman.Models;
     using Refman.ViewModels.Interfaces;
 
@@ -16,11 +12,11 @@
 
         public IReferencesViewModel ReferencesViewModel { get; }
 
-        public IEnumerable<IResult> Reference(string urls)
+        public void Reference(string urls)
         {
             foreach (string url in urls.Split('\n'))
             {
-                yield return ReferencesViewModel.Add(new ReferenceResult(new Reference(url))).AsResult();
+                ReferencesViewModel.Add(new ReferenceResult(new Reference(url)));
             }
         }
     }

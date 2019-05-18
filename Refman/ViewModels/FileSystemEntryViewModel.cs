@@ -5,7 +5,12 @@
 
     internal abstract class FileSystemEntryViewModel<T> : ViewModelBase, IFileSystemEntryViewModel<T> where T : FileSystemEntry
     {
-        public T FileSystemEntry { get; private protected set; }
+        private protected FileSystemEntryViewModel(T fileSystemEntry)
+        {
+            FileSystemEntry = fileSystemEntry;
+        }
+
+        public T FileSystemEntry { get; }
 
         private bool _isExpanded;
         public virtual bool IsExpanded

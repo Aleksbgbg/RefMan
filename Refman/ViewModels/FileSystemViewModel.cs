@@ -2,19 +2,20 @@
 {
     using Caliburn.Micro;
 
-    using Refman.Factories.Interfaces;
     using Refman.Services.Interfaces;
     using Refman.ViewModels.Interfaces;
 
+    using Wingman.ServiceFactory;
+
     internal class FileSystemViewModel : ViewModelBase, IFileSystemViewModel
     {
-        private readonly IFileSystemFactory _fileSystemFactory;
+        private readonly IServiceFactory _serviceFactory;
 
         private readonly IFileSystemService _fileSystemService;
 
-        public FileSystemViewModel(IFileSystemFactory fileSystemFactory, IFileSystemService fileSystemService, ISettingsService settingsService)
+        public FileSystemViewModel(IServiceFactory serviceFactory, IFileSystemService fileSystemService, ISettingsService settingsService)
         {
-            _fileSystemFactory = fileSystemFactory;
+            _serviceFactory = serviceFactory;
             _fileSystemService = fileSystemService;
 
             PopulateRoot();
@@ -26,7 +27,7 @@
 
         private void PopulateRoot()
         {
-            IFolderViewModel rootFolder = _fileSystemFactory.MakeFolder(_fileSystemService.ReadRootFolder());
+            IFolderViewModel rootFolder = _serviceFactory.Make<IFolderViewModel>(_fileSystemService.ReadRootFolder());
 
             rootFolder.IsExpanded = true;
 

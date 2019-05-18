@@ -8,6 +8,10 @@
 
         FileSystemEntry[] ReadEntries(Folder folder);
 
+        Folder[] ReadFolders(Folder folder);
+
+        File[] ReadFiles(Folder folder);
+
         bool CanExpand(Folder folder);
 
         void SaveFolderConfig(Folder folder);

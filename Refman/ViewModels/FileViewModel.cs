@@ -9,7 +9,7 @@
     {
         private readonly IEventAggregator _eventAggregator;
 
-        public FileViewModel(IEventAggregator eventAggregator)
+        public FileViewModel(IEventAggregator eventAggregator, File file) : base(file)
         {
             _eventAggregator = eventAggregator;
         }
@@ -21,11 +21,6 @@
             set
             {
             }
-        }
-
-        public void Initialize(File file)
-        {
-            FileSystemEntry = file;
         }
 
         private protected override void OnSelected(bool isSelected)

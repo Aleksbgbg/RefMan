@@ -4,6 +4,5 @@
 
     internal interface IFolderViewModel : IFileSystemEntryViewModel<Folder>
     {
-        void Initialize(Folder folder);
     }
 }

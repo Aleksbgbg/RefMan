@@ -18,9 +18,40 @@
 
         private readonly IWebService _webService;
 
-        private File _referenceFile;
+        private readonly File _referenceFile;
 
-        public ReferenceViewModel(IEventAggregator eventAggregator, IFileSystemService fileSystemService, IReferencingService referencingService, IWebService webService)
+        public ReferenceViewModel(IEventAggregator eventAggregator, IFileSystemService fileSystemService, IReferencingService referencingService, IWebService webService, Reference reference, File referenceFile)
+                : this(eventAggregator, fileSystemService, referencingService, webService)
+        {
+            ReferenceResult = new ReferenceResult(reference, isComplete: true);
+            _referenceFile = referenceFile;
+
+            UpdateReferenceOnUrlChanges();
+        }
+
+        public ReferenceViewModel(IEventAggregator eventAggregator, IFileSystemService fileSystemService, IReferencingService referencingService, IWebService webService, ReferenceResult referenceResult, File referenceFile)
+                : this(eventAggregator, fileSystemService, referencingService, webService)
+        {
+            ReferenceResult = referenceResult;
+            _referenceFile = referenceFile;
+
+            if (!referenceResult.IsComplete)
+            {
+                _referenceFile.References.Add(referenceResult.Reference);
+
+                Task.Run(async () =>
+                {
+                    await _referencingService.CompleteReference(referenceResult.Reference);
+                    referenceResult.IsComplete = true;
+
+                    _fileSystemService.SaveFile(_referenceFile);
+                });
+            }
+
+            UpdateReferenceOnUrlChanges();
+        }
+
+        private ReferenceViewModel(IEventAggregator eventAggregator, IFileSystemService fileSystemService, IReferencingService referencingService, IWebService webService)
         {
             _eventAggregator = eventAggregator;
             _fileSystemService = fileSystemService;
@@ -47,32 +78,6 @@
                     _fileSystemService.SaveFile(_referenceFile);
                 }
             }
-        }
-
-        public void Initialize(Reference reference, File referenceFile)
-        {
-            ReferenceResult = new ReferenceResult(reference, isComplete: true);
-            _referenceFile = referenceFile;
-
-            UpdateReferenceOnUrlChanges();
-        }
-
-        public async Task Initialize(ReferenceResult referenceResult, File referenceFile)
-        {
-            ReferenceResult = referenceResult;
-            _referenceFile = referenceFile;
-
-            if (!referenceResult.IsComplete)
-            {
-                _referenceFile.References.Add(referenceResult.Reference);
-
-                await _referencingService.CompleteReference(referenceResult.Reference);
-                referenceResult.IsComplete = true;
-
-                _fileSystemService.SaveFile(_referenceFile);
-            }
-
-            UpdateReferenceOnUrlChanges();
         }
 
         public void Delete()
